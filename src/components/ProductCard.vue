@@ -1,10 +1,25 @@
 <template>
-    <div class="product-item">
-        <div class="image-item">картикна</div>
-        <div class="name">{{product.name}}</div>
-        <div class="price">Цена: {{product.price}}</div>
-        <div class="volume">Количество: {{product.volume}}</div>
-    </div>
+    <v-card class="product-item">
+        <v-img
+            class="image-item"
+            :src="product.img"
+        ></v-img>
+        <v-card-title
+            class="name"
+        >
+            {{product.name}}
+        </v-card-title>
+        <v-card-subtitle
+            class="price"
+        >
+            Цена: {{product.price}}
+        </v-card-subtitle>
+        <v-card-subtitle
+            class="volume"
+        >
+            Количество: {{product.volume}}
+        </v-card-subtitle>
+    </v-card>
 </template>
 
 <script>
@@ -26,7 +41,7 @@ export default {
                          "name name"
                          "price volume";
     grid-template-columns: 1fr;
-    grid-template-rows: 2fr 0.3fr 0.3fr;
+    grid-template-rows: 2fr 0.5fr 0.5fr;
     border: 2px solid orange;
     border-radius: 15px;
     margin: 5px;

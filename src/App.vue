@@ -1,5 +1,5 @@
 <template>
-    <navigation-header></navigation-header>
+    <navigation-header class="nav"></navigation-header>
     <div class="app">
         <router-view></router-view>
     </div>
@@ -19,7 +19,16 @@ export default {
     padding: 0;
     box-sizing: border-box;
 }
+html, body {
+    height: 100%;
+    overflow: hidden !important;
+}
+#app{
+    height: 100%;
+    display: grid;
+    grid-template-rows: 10% 90%;
+}
 .app{
     margin: 15px;
-}
+ }
 </style>

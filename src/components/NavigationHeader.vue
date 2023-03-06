@@ -14,8 +14,8 @@ export default {
 <style scoped>
 .navigation-menu{
     display: grid;
-    grid-template-columns: 300px auto;
-    grid-template-rows: 100px;
+    grid-template-columns: minmax(100px, 200px) auto;
+    grid-template-rows: auto;
     text-align: center;
 }
 </style>

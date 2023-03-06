@@ -29,25 +29,71 @@ export default {
                     id: Date.now(),
                     name: "Продукт 1",
                     price: 12000,
-                    volume: 12
+                    volume: 12,
+                    img: "@/assets/image/product.jpg"
                 },
                 {
                     id: Date.now(),
                     name: "Продукт 1",
                     price: 12000,
-                    volume: 12
+                    volume: 12,
+                    img: "@/assets/image/product.jpg"
                 },
                 {
                     id: Date.now(),
                     name: "Продукт 1",
                     price: 12000,
-                    volume: 12
+                    volume: 12,
+                    img: "@/assets/image/product.jpg"
                 },
                 {
                     id: Date.now(),
                     name: "Продукт 1",
                     price: 12000,
-                    volume: 12
+                    volume: 12,
+                    img: "@/assets/image/product.jpg"
+                },
+                {
+                    id: Date.now(),
+                    name: "Продукт 1",
+                    price: 12000,
+                    volume: 12,
+                    img: "@/assets/image/product.jpg"
+                },
+                {
+                    id: Date.now(),
+                    name: "Продукт 1",
+                    price: 12000,
+                    volume: 12,
+                    img: "@/assets/image/product.jpg"
+                },
+                {
+                    id: Date.now(),
+                    name: "Продукт 1",
+                    price: 12000,
+                    volume: 12,
+                    img: "@/assets/image/product.jpg"
+                },
+                {
+                    id: Date.now(),
+                    name: "Продукт 1",
+                    price: 12000,
+                    volume: 12,
+                    img: "@/assets/image/product.jpg"
+                },
+                {
+                    id: Date.now(),
+                    name: "Продукт 1",
+                    price: 12000,
+                    volume: 12,
+                    img: "@/assets/image/product.jpg"
+                },
+                {
+                    id: Date.now(),
+                    name: "Продукт 1",
+                    price: 12000,
+                    volume: 12,
+                    img: "@/assets/image/product.jpg"
                 },
             ]
         }
@@ -57,10 +103,11 @@ export default {
 
 <style scoped>
 .page {
+    height: 100%;
     display: grid;
     grid-template-areas: "search search"
                          "filter products";
-    grid-template-columns: 250px 1fr;
+    grid-template-columns: minmax(150px, 250px)  1fr;
     grid-template-rows: 100px 1fr;
     grid-gap: 15px;
 }
@@ -76,7 +123,19 @@ export default {
     grid-area: products;
     border: 1px solid blue;
     display: grid;
-    grid-template-columns: repeat(6, minmax(100px, 1fr));
-    grid-template-rows: minmax(400px, 1fr);
+}
+@media (min-width: 1200px) {
+    .products {
+        grid-template-columns: repeat(7, minmax(200px, auto));
+        grid-template-rows: repeat(3, minmax(300px, auto));
+
+    }
+}
+@media (min-width: 1024px) {
+    .products {
+        grid-template-columns: repeat(8, minmax(200px, 1fr));
+        grid-template-rows: repeat(3, minmax(300px, 1fr));
+
+    }
 }
 </style>
