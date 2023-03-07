@@ -2,7 +2,7 @@
     <v-card class="product-item">
         <v-img
             class="image-item"
-            :src="product.img"
+            :src="getImg(product.img)"
         ></v-img>
         <v-card-title
             class="name"
@@ -29,6 +29,16 @@ export default {
         product: {
             type: Object,
             required: true
+        }
+    },
+    data(){
+        return {
+            localImg: new URL('@/assets/image/product.jpg', import.meta.url).href
+        }
+    },
+    methods: {
+        getImg(path){
+            return new URL(path, import.meta.url).href;
         }
     }
 }

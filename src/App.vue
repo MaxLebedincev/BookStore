@@ -21,7 +21,7 @@ export default {
 }
 html, body {
     height: 100%;
-    overflow: hidden !important;
+    /*overflow: hidden !important;*/
 }
 #app{
     height: 100%;
