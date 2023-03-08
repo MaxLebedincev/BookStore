@@ -1,7 +1,7 @@
 <template>
     <div class="page">
         <div class="search">
-            <input name="Поиск">
+
         </div>
         <div class="filter">
             12321
@@ -30,14 +30,28 @@ export default {
                     name: "Продукт 1",
                     price: 12000,
                     volume: 12,
-                    img: "@/assets/image/product.jpg"
+                    img: "product.jpg"
                 },
                 {
                     id: Date.now(),
                     name: "Продукт 1",
                     price: 12000,
                     volume: 12,
-                    img: "@/assets/image/product.jpg"
+                    img: "product.jpg"
+                },
+                {
+                    id: Date.now(),
+                    name: "Продукт 1",
+                    price: 12000,
+                    volume: 12,
+                    img: "product.jpg"
+                },
+                {
+                    id: Date.now(),
+                    name: "Продукт 1",
+                    price: 12000,
+                    volume: 12,
+                    img: "product.jpg"
                 },
             ]
         }
@@ -48,12 +62,14 @@ export default {
 <style scoped>
 .page {
     height: 100%;
+    width: 1200px;
     display: grid;
     grid-template-areas: "search search"
-                         "filter products";
-    grid-template-columns: minmax(150px, 250px)  1fr;
+                         "products filter";
+    grid-template-columns: 1fr 300px;
     grid-template-rows: 100px 1fr;
     grid-gap: 15px;
+    margin: auto;
 }
 .search {
     grid-area: search;
@@ -65,21 +81,9 @@ export default {
 }
 .products {
     grid-area: products;
-    border: 1px solid blue;
     display: grid;
-}
-@media (min-width: 1200px) {
-    .products {
-        grid-template-columns: repeat(7, minmax(200px, auto));
-        grid-template-rows: repeat(3, minmax(300px, auto));
-
-    }
-}
-@media (min-width: 1024px) {
-    .products {
-        grid-template-columns: repeat(8, minmax(200px, 1fr));
-        grid-template-rows: repeat(3, minmax(300px, 1fr));
-
-    }
+    grid-template-columns: 900px;
+    grid-auto-rows: 300px;
+    grid-row-gap: 30px;
 }
 </style>

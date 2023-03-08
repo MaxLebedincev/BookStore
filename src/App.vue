@@ -28,7 +28,14 @@ html, body {
     display: grid;
     grid-template-rows: 10% 90%;
 }
+.nav{
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
 .app{
-    margin: 15px;
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
  }
 </style>
