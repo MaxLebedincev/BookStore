@@ -61,7 +61,7 @@ export default {
 <style scoped>
 .page {
     height: 100%;
-    width: 1200px;
+    width: 1500px;
     display: grid;
     grid-template-areas: "search search"
                          "products filter";
@@ -81,8 +81,9 @@ export default {
 .products {
     grid-area: products;
     display: grid;
-    grid-template-columns: 900px;
-    grid-auto-rows: 300px;
-    grid-row-gap: 30px;
+    grid-template-columns: repeat(5, 180px);
+    grid-template-rows: repeat(2, 300px);
+    grid-column-gap: 25px;
+    grid-row-gap: 15px;
 }
 </style>

@@ -1,5 +1,8 @@
 <template>
-    <navigation-header class="nav"></navigation-header>
+    <navigation-header
+        class="nav"
+        :index-active="indexActive"
+    ></navigation-header>
     <div class="app">
         <router-view></router-view>
     </div>
@@ -9,7 +12,13 @@
 import NavigationHeader from "@/components/NavigationHeader";
 export default {
     name: "App",
-    components: {NavigationHeader}
+    components: {NavigationHeader},
+
+    data(){
+        return{
+            indexActive: 0
+        }
+    }
 }
 </script>
 
@@ -29,7 +38,11 @@ html, body {
     grid-template-rows: 10% 90%;
 
 }
+.nav {
+    height: 60px;
+}
 .app{
+    margin-top: 100px;
     width: 100%;
     display: flex;
 }

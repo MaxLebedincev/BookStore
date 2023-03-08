@@ -1,36 +1,29 @@
 <template>
-    <vs-card actionable fixed-height class="card-main">
-        <template #header>
-            <div class="wrapper">
-                <h3 class="block__name">
+    <div class="wrapper">
+        <vs-card class="block__card" actionable @mouseover="upHere = true"  @mouseleave="upHere = false" >
+            <template #header>
+                <h3>
                     Hello world !
                 </h3>
-                <vs-progress
-                    class="block__star"
-                    :percent="56"
-                    color="#ff6200"
-                ></vs-progress>
-            </div>
-        </template>
-        <template #media>
-            <div class="wrapper">
+            </template>
+            <template #media>
                 <img
-                    class="block__img"
                     :src="getImg(product.img)"
-
+                    class="image"
                 >
-                <div class="block__text">
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </span>
-                </div>
-            </div>
-        </template>
-        <template #footer>
-            <vs-row vs-justify="flex-end">
-                <vs-button color="primary" type="gradient" >View</vs-button>
-                <vs-button color="danger" type="gradient">Delete</vs-button>
-            </vs-row>
-        </template>
-    </vs-card>
+            </template>
+            <template #footer>
+                <vs-row vs-justify="flex-end">
+                    <vs-button type="gradient" color="danger" icon="favorite"></vs-button>
+                    <vs-button color="primary" icon="turned_in_not"></vs-button>
+                    <vs-button color="rgb(230,230,230)" color-text="rgb(50,50,50)" icon="settings"></vs-button>
+                </vs-row>
+            </template>
+        </vs-card>
+        <div v-if="upHere" class="block__popup">
+            asdsadfsadfsdadsfsadfsdgwwqr
+        </div>
+    </div>
 </template>
 
 <script>
@@ -44,7 +37,7 @@ export default {
     },
     data(){
         return {
-
+            upHere: false
         }
     },
     methods: {
@@ -55,33 +48,32 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.card-main {
-    background: linear-gradient(to bottom left, #FFF 59%, #ff9000);
-}
-.con-vs-card.fixedHeight:hover {
-    background: linear-gradient(to bottom left, #FFF 49%, #ff9000);
-    animation: gradient 15s ease infinite;
+.image{
+    width: 180px;
+    height: 250px;
 }
 .wrapper {
     display: flex;
 }
 .block {
     display: inline-block;
-    border: 1px solid blue;
-    margin: 2px;
-    &__name{
-        width: 600px;
+    &__card {
+
     }
-    &__star{
-        margin: auto;
-    }
-    &__img {
-        width: 150px;
-        height: 200px;
-        margin: 15px;
-    }
-    &__text {
-        margin: 10px 10px 0 30px;
+    &__popup {
+        margin-top: 15px;
+        margin-left: 10px;
+        opacity: 0.8;
+        border-radius: 5px;
+        min-width: 300px;
+        max-width: 300px;
+        min-height: 400px;
+        max-height: 400px;
+
+        color: #FFF;
+
+        z-index: 100;
+        background-color: #000;
     }
 }
 </style>
