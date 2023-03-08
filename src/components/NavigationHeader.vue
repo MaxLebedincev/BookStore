@@ -1,7 +1,19 @@
 <template>
-    <div class="navigation-menu">
-        <router-link to="/">ЛОГО</router-link>
-        <router-link to="/home">ДОМ</router-link>
+    <div class="navigator">
+        <vs-tabs
+            alignment="fixed"
+            hover-line
+            color="#000"
+        >
+            <vs-tab
+                label="Logo"
+                @click="$router.push('/')"
+            ></vs-tab>
+            <vs-tab
+                label="Home"
+                @click="$router.push('/home')"
+            ></vs-tab>
+        </vs-tabs>
     </div>
 </template>
 
@@ -11,11 +23,11 @@ export default {
 }
 </script>
 
-<style scoped>
-.navigation-menu{
-    display: grid;
-    grid-template-columns: minmax(100px, 200px) auto;
-    grid-template-rows: auto;
-    text-align: center;
+<style lang="scss">
+.navigator .con-vs-tabs .con-ul-tabs, .vs-tabs--ul {
+    width: 100%;
+    position: fixed;
+    background: #FFF;
+    z-index: 100;
 }
 </style>

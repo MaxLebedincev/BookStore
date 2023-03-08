@@ -7,7 +7,6 @@
             12321
         </div>
         <div class="products">
-
             <product-card
                 v-for="product in products"
                 :key="product.id"

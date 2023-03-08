@@ -58,6 +58,10 @@ export default {
 .card-main {
     background: linear-gradient(to bottom left, #FFF 59%, #ff9000);
 }
+.con-vs-card.fixedHeight:hover {
+    background: linear-gradient(to bottom left, #FFF 49%, #ff9000);
+    animation: gradient 15s ease infinite;
+}
 .wrapper {
     display: flex;
 }
