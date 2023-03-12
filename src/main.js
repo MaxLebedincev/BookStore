@@ -10,6 +10,12 @@ import 'material-icons/iconfont/material-icons.css';
 
 const app = createApp(App);
 
+app.config.globalProperties.globalColor = {
+    color: "#000000",
+    backgroundColor: "#FFFFFF",
+    inverse: false
+}
+
 app
     .use(router)
     .use(Vuesax)

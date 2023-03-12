@@ -18,6 +18,10 @@ export default {
         return{
             indexActive: 0
         }
+    },
+    mounted(){
+        localStorage.setItem("color", "#000000")
+        localStorage.setItem("backgroundColor", "#FFFFFF")
     }
 }
 </script>
@@ -42,7 +46,7 @@ html, body {
     height: 60px;
 }
 .app{
-    margin-top: 100px;
+    margin-top: 80px;
     width: 100%;
     display: flex;
 }
