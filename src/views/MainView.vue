@@ -1,8 +1,9 @@
 <template>
     <div class="page">
         <div class="search">
-            <vs-input  icon-after="true" class="search-input" icon="search" placeholder="Поиск" v-model="input" size="large"/>
+            <vs-input  icon-after="true" class="search-input" color="#c52026" icon="search" placeholder="Поиск" v-model="input" size="large"/>
             <vs-select
+                class="search-select"
                 model-value="selectS"
             >
                 <vs-select-item
@@ -26,9 +27,7 @@
             ></product-card>
         </div>
         <div class="pagination">
-            <div class="wrapper-pagination">
-                <vs-pagination color="#ffc000"  :total="20" v-model="currentx" goto></vs-pagination>
-            </div>
+            <vs-pagination color="#c52026" :total="20" v-model="currentx" goto></vs-pagination>
         </div>
     </div>
 </template>
@@ -125,20 +124,53 @@ export default {
     grid-area: search;
     height: 100%;
     width: 100%;
+    margin-bottom: 15px;
     display: flex;
-    box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
-}
-.search-input{
-    align-items: center;
-    display: inline-flex;
-    height: 100%;
-    width: 80% !important;
-    font-size: 18px;
-}
-.vs-con-input-label .vs-con-input{
-    width: 100%;
-}
+    background-color: rgba(255,255,255,0);
 
+    .search-input{
+        width: 80%;
+        display: inline-flex;
+        justify-content: center;
+        margin-right: 15px;
+        background-color: rgba(255,255,255,0);
+        box-shadow: 1px 4px 25px 0 rgba(0,0,0,.1);
+
+        .vs-con-input {
+            width: 100%;
+            height: 100%;
+            .vs-input--placeholder {
+                color: rgba(0,0,0,.4) !important;
+            }
+            input, span {
+                width: 100%;
+                height: 100%;
+                font-size: 22px;
+                color: rgba(0,0,0,.8);
+            }
+        }
+        .material-icons{
+            font-size: 32px;
+        }
+    }
+    .search-select{
+        display: inline-flex;
+        justify-content: flex-end;
+        width: 20%;
+        box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
+        .input-select-con{
+            width: 100%;
+        }
+        .vs-select--input{
+            height: 100%;
+            font-size: 16px;
+            color: rgba(0,0,0,.8);
+        }
+        .vs-select--input:hover{
+            border-color: #c52026
+        }
+    }
+}
 .filter {
     grid-area: filter;
     border-radius: 5px;
@@ -158,12 +190,20 @@ export default {
     border-radius: 5px;
     margin-bottom: 15px;
     box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
-}
-.wrapper-pagination {
-    width: 80%;
-    height: 100%;
-    display: flex;
-    margin-top: 2px;
 
+    .vs-row{
+        height: 100%;
+    }
+    .vs-pagination--mb {
+        margin-bottom: 0px;
+        height: 100%;
+        justify-content: center !important;
+    }
+}
+.vs-select--options{
+    .vs-select--item span{
+        font-size: 16px;
+        color: rgba(0,0,0,.8)
+    }
 }
 </style>

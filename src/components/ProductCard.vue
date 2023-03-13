@@ -26,7 +26,7 @@
                             ></vs-button>
                             <vs-button
                                 type="gradient"
-                                color="primary"
+                                color="danger"
                                 icon="star_border"
                             ></vs-button>
                         </vs-row>
@@ -52,7 +52,7 @@
             </div>
             <vs-row class="block__popup__footer">
                 <vs-col vs-type="flex" vs-justify="center" vs-w="8">
-                    <vs-progress :height="4" :percent="getStarPercent(product.star)" color="warning">warning</vs-progress>
+                    <vs-progress :height="4" :percent="getStarPercent(product.star)" color="#cc2026">warning</vs-progress>
                 </vs-col>
                 <vs-col vs-type="flex" vs-justify="center" vs-w="4">
                     {{product.star}}%

@@ -2,7 +2,7 @@
     <vs-navbar
         class="navigator"
         v-model="indexActives"
-        color="orange"
+        color="#c52026"
         text-color="rgba(255,255,255,.6)"
         active-text-color="rgba(255,255,255,1)"
     >
@@ -21,7 +21,7 @@
         <vs-icon
             icon="home"
             size="large"
-            bg="#FFF"
+            bg="#c52026"
         ></vs-icon>
 
     </vs-navbar>
@@ -47,7 +47,7 @@ export default {
 <style lang="scss" scoped>
 .navigator {
     position: fixed;
-    background-color: #FFF;
+    background-color: #c52026;
     z-index: 100;
 
 }
