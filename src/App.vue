@@ -46,7 +46,6 @@ html, body {
     height: 60px;
 }
 .app{
-    margin-top: 80px;
     width: 100%;
     display: flex;
 }

@@ -93,6 +93,7 @@ export default {
         }
     },
     mounted() {
+        console.log(this.inverse)
         this.color = !this.inverse ? localStorage.getItem('color') : localStorage.getItem('backgroundColor');
         this.backgroundColor = this.inverse ? localStorage.getItem('color') : localStorage.getItem('backgroundColor');
     }

@@ -27,7 +27,7 @@
             ></product-card>
         </div>
         <div class="pagination">
-            <vs-pagination color="#c52026" :total="20" v-model="currentx" goto></vs-pagination>
+            <vs-pagination color="#640064" :total="20" v-model="currentx" goto></vs-pagination>
         </div>
     </div>
 </template>
@@ -198,6 +198,12 @@ export default {
         margin-bottom: 0px;
         height: 100%;
         justify-content: center !important;
+    }
+    .vs-pagination--li .effect{
+        background-image: linear-gradient(30deg,rgba(249, 31, 67,1),rgba(249, 31, 67,.5)) !important;
+    }
+    .vs-pagination--buttons:hover{
+        background-image: linear-gradient(30deg,rgba(249, 31, 67,1),rgba(249, 31, 67,.5)) !important;
     }
 }
 .vs-select--options{

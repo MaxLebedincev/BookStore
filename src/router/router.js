@@ -10,6 +10,14 @@ const routes = [
     {
         path:'/home',
         component: PersonalView
+    },
+    {
+        path:'/about',
+        component: PersonalView
+    },
+    {
+        path:'/admin',
+        component: PersonalView
     }
 ]
 
