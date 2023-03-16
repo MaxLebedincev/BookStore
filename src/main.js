@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, h } from 'vue'
 import App from './App.vue'
 import router from "@/router/router";
 
@@ -6,17 +6,22 @@ import Vuesax from 'vuesax3'
 import 'vuesax3/dist/vuesax.css'
 import 'material-icons/iconfont/material-icons.css';
 
+import { createStore } from 'vuex'
 
+export const store = createStore({
+    state () {
+        return {
+            inverse: false
+        }
+    }
+})
 
-const app = createApp(App);
-
-app.config.globalProperties.globalColor = {
-    color: "#000000",
-    backgroundColor: "#FFFFFF",
-    inverse: false
-}
+const app = createApp({
+    render: ()=>h(App)
+});
 
 app
+    .use(store)
     .use(router)
     .use(Vuesax)
     .mount('#app')
