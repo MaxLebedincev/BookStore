@@ -1,10 +1,17 @@
 <template>
-    <navigation-header
-        class="nav"
-        :index-active="indexActive"
-    ></navigation-header>
-    <div class="app">
-        <router-view></router-view>
+    <div
+        class="app"
+        :class="!this.$store.state.isNightTheme ? 'app__light-theme' : 'app__night-theme'"
+    >
+        <div class="navigation">
+            <navigation-header
+                class="navigation-element"
+                :index-active="indexActive"
+            ></navigation-header>
+        </div>
+        <div class="page-list">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
@@ -16,12 +23,8 @@ export default {
 
     data(){
         return{
-            indexActive: 0
+            indexActive: 0,
         }
-    },
-    mounted(){
-        localStorage.setItem("color", "#000000")
-        localStorage.setItem("backgroundColor", "#FFFFFF")
     }
 }
 </script>
@@ -35,19 +38,33 @@ export default {
 html, body {
     height: 100%;
 }
-
 #app{
+    height: 100%;
+}
+
+.app{
     height: 100%;
     display: grid;
     grid-template-rows: 10% 90%;
 
-}
-.nav {
-    height: 60px;
-}
-.app{
-    width: 100%;
-    display: flex;
+    &__light-theme {
+        background-color: #FFFFFF;
+    }
+    &__night-theme {
+        background-color: #110c10e0;
+    }
+
+    .navigation{
+        height: 100%;
+
+        .navigation-element {
+            height: 60px;
+        }
+    }
+    .page-list{
+        width: 100%;
+        display: flex;
+    }
 }
 
 /*#region Scrollbar*/

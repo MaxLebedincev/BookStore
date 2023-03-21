@@ -1,13 +1,5 @@
 const state = {
-    colorMain: {
-        color: "",
-        background: "",
-        completed: false
-    },
-    inverseMain: {
-        inverse: false,
-        completed: false
-    }
+    isNightTheme: false,
 }
 
 const actions = {}

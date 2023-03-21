@@ -1,6 +1,7 @@
 import MainView from "@/views/MainView.vue"
 import {createRouter, createWebHistory} from "vue-router"
 import PersonalView from "@/views/PersonalView";
+import AboutView from "@/views/AboutView";
 
 const routes = [
     {
@@ -13,7 +14,7 @@ const routes = [
     },
     {
         path:'/about',
-        component: PersonalView
+        component: AboutView
     },
     {
         path:'/admin',

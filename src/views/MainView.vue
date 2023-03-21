@@ -1,22 +1,44 @@
 <template>
     <div class="page">
         <div class="search">
-            <vs-input  icon-after="true" class="search-input" color="#c52026" icon="search" placeholder="Поиск" v-model="input" size="large"/>
+            <div class="search-menu">
+                <vs-input  icon-after="true" class="search-menu__input" color="#c52026" icon="search" placeholder="Поиск" v-model="input" size="large"/>
+                <vs-button
+                    class="search-menu__icon"
+                    color="#c52026"
+                    type="flat"
+                    :icon="!reverseIcon ? 'trending_up' : 'trending_down'"
+                    @click="click"
+                ></vs-button>
+            </div>
             <vs-select
                 class="search-select"
-                model-value="selectS"
+                v-model="selectS"
             >
-                <vs-select-item
-                    value="0"
-                    text="Что-то"
-                />
-                <vs-select-item
-                    value="2"
-                    text="Rто-то"
-                />
+                <vs-select-group title="Сортировать по">
+                    <vs-select-item
+                        v-for="(item, index) in optionsS"
+                        :modelValue="item.value"
+                        :text="item.text"
+                        :key="index"
+                    />
+                </vs-select-group>
             </vs-select>
         </div>
         <div class="filter">
+            <div class="genre" >
+                <vs-checkbox
+                    class="genre__elem"
+                    v-for="(tag, index) in tags"
+                    :key="index"
+                    v-model="form.regions"
+                    :vs-value="tag"
+                    :icon="tag.icon"
+                    color="danger"
+                >
+                    {{ tag.name }}
+                </vs-checkbox>
+            </div>
         </div>
         <div class="products">
             <product-card
@@ -44,9 +66,9 @@ export default {
             input: null,
             selectS: '0',
             optionsS:[
-                {text:'IT',value: '0'},
-                {text:'Blade Runner',value: '1'},
-                {text:'Thor Ragnarok',value: '2'},
+                {text:'рейтингу ',value: '0'},
+                {text:'цене',value: '1'},
+                {text:'дате добавления',value: '2'},
             ],
             products: [
                 {
@@ -99,15 +121,113 @@ export default {
                         }
                     ]
                 }
+            ],
+            reverseIcon: false,
+            form: {
+                regions: []
+            },
+            tags: [
+                {
+                    name: "Боевик",
+                    icon: "shield",
+                    id: Date.now()
+                },
+                {
+                    name: "Комедия",
+                    icon: "sentiment_satisfied_alt",
+                    id: Date.now()
+                },
+                {
+                    name: "Романтика",
+                    icon: "favorite",
+                    id: Date.now()
+                }
             ]
         }
     },
     methods: {
+        click() {
+            this.reverseIcon = !this.reverseIcon;
+        }
     }
 }
 </script>
 
 <style lang="scss">
+.search {
+    .search-menu {
+        &__input {
+            .vs-con-input {
+                width: 100%;
+                height: 100%;
+                .vs-input--placeholder {
+                    color: rgba(0,0,0,.4) !important;
+                }
+                input, span {
+                    width: 100%;
+                    height: 100%;
+                    font-size: 22px;
+                    color: rgba(0,0,0,.8);
+                }
+            }
+            .material-icons{
+                font-size: 32px;
+            }
+        }
+
+        &__icon{
+            box-shadow: 1px 4px 25px 0 rgba(0,0,0,.1);
+            height: 48px !important;
+            width: 48px !important;
+        }
+    }
+    .search-select{
+        .input-select-con{
+            width: 100%;
+        }
+        .vs-select--input{
+            height: 100%;
+            font-size: 16px;
+            color: rgba(0,0,0,.8);
+        }
+        .vs-select--input:hover{
+            border-color: #c52026
+        }
+    }
+}
+.filter {
+    .genre{
+        &__elem {
+            .material-icons{
+                font-size: 16px;
+            }
+        }
+    }
+}
+.pagination {
+    .vs-row{
+        height: 100%;
+    }
+    .vs-pagination--mb {
+        margin-bottom: 0px;
+        height: 100%;
+        justify-content: center !important;
+    }
+    .vs-pagination--li .effect{
+        background-image: linear-gradient(30deg,rgba(249, 31, 67,1),rgba(249, 31, 67,.5)) !important;
+    }
+    .vs-pagination--buttons:hover{
+        background-image: linear-gradient(30deg,rgba(249, 31, 67,1),rgba(249, 31, 67,.5)) !important;
+    }
+}
+.vs-select--options{
+    .vs-select--item span{
+        font-size: 16px;
+        color: rgba(0,0,0,.8)
+    }
+}
+</style>
+<style lang="scss" scoped>
 .page {
     height: 100%;
     width: 1500px;
@@ -128,30 +248,43 @@ export default {
     display: flex;
     background-color: rgba(255,255,255,0);
 
-    .search-input{
+    .search-menu {
         width: 80%;
         display: inline-flex;
         justify-content: center;
         margin-right: 15px;
-        background-color: rgba(255,255,255,0);
-        box-shadow: 1px 4px 25px 0 rgba(0,0,0,.1);
 
-        .vs-con-input {
-            width: 100%;
-            height: 100%;
-            .vs-input--placeholder {
-                color: rgba(0,0,0,.4) !important;
-            }
-            input, span {
+
+        &__input {
+            width: 95%;
+            background-color: rgba(255,255,255,0);
+            box-shadow: 1px 4px 25px 0 rgba(0,0,0,.1);
+            margin-right: 15px;
+
+            .vs-con-input {
                 width: 100%;
                 height: 100%;
-                font-size: 22px;
-                color: rgba(0,0,0,.8);
+                .vs-input--placeholder {
+                    color: rgba(0,0,0,.4) !important;
+                }
+                input, span {
+                    width: 100%;
+                    height: 100%;
+                    font-size: 22px;
+                    color: rgba(0,0,0,.8);
+                }
+            }
+            .material-icons{
+                font-size: 32px;
             }
         }
-        .material-icons{
-            font-size: 32px;
+
+        &__icon{
+            box-shadow: 1px 4px 25px 0 rgba(0,0,0,.1);
+            height: 48px !important;
+            width: 48px !important;
         }
+
     }
     .search-select{
         display: inline-flex;
@@ -176,6 +309,19 @@ export default {
     border-radius: 5px;
     margin-bottom: 15px;
     box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
+
+    .genre{
+        width: 100%;
+
+        &__elem {
+            margin: 15px 15px;
+            display: inline-flex;
+
+            .material-icons{
+                font-size: 16px;
+            }
+        }
+    }
 }
 .products {
     grid-area: products;

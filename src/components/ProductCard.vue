@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <vs-card class="block__card" actionable @mouseover="upHere = true"  @mouseleave="upHere = false" >
+        <vs-card class="card" actionable @mouseover="upHere = true"  @mouseleave="upHere = false" >
             <template #header>
                 <h4>{{product.name}}</h4>
             </template>
@@ -34,11 +34,11 @@
                 </vs-row>
             </template>
         </vs-card>
-        <div class="block__popup" type="flex" v-if="upHere">
-            <div class="block__popup__header">
-                <h3 class="block__popup__header__name">{{product.name}}</h3>
+        <div class="popup" type="flex" v-if="upHere">
+            <div class="popup__header">
+                <h3 class="popup__header__name">{{product.name}}</h3>
                 <hr>
-                <div class="block__popup__header__tag">
+                <div class="popup__header__tag">
                     <c-tag
                         v-for="tag in [].concat(product.tags).slice(0, 3)" :key="tag.id"
                         :name="tag.name"
@@ -47,10 +47,10 @@
                     ></c-tag>
                 </div>
             </div>
-            <div class="block__popup__body">
+            <div class="popup__body">
                 {{product.description}}
             </div>
-            <vs-row class="block__popup__footer">
+            <vs-row class="popup__footer">
                 <vs-col vs-type="flex" vs-justify="center" vs-w="8">
                     <vs-progress :height="4" :percent="getStarPercent(product.star)" color="#cc2026">warning</vs-progress>
                 </vs-col>
@@ -114,47 +114,44 @@ export default {
 .con-vs-card {
     background-color: v-bind('backgroundColor');
 }
-.block {
+.card {
     display: inline-block;
-    &__card {
+}
+.popup {
+    margin-top: 15px;
+    margin-left: 10px;
+    opacity: 0.9;
+    min-width: 300px;
+    align-content: flex-end;
 
+    color: v-bind('backgroundColor');
+    z-index: 100;
+    display: grid;
+    grid-template-rows: 25% auto 10%;
+
+    &__header{
+        border-radius: 5px 5px 0 0;
+        background-color: v-bind('color');
+        z-index: 102;
+        &__name {
+            padding: 5px;
+        }
+        &__tag {
+            padding: 5px;
+        }
     }
-    &__popup {
-        margin-top: 15px;
-        margin-left: 10px;
-        opacity: 0.9;
-        min-width: 300px;
-        align-content: flex-end;
-
-        color: v-bind('backgroundColor');
+    &__body{
+        background-color: v-bind('color');
         z-index: 100;
-        display: grid;
-        grid-template-rows: 25% auto 10%;
-
-        &__header{
-            border-radius: 5px 5px 0 0;
-            background-color: v-bind('color');
-            z-index: 102;
-            &__name {
-                padding: 5px;
-            }
-            &__tag {
-                padding: 5px;
-            }
-        }
-        &__body{
-            background-color: v-bind('color');
-            z-index: 100;
-            padding: 10px;
-            padding-top: 15px;
-        }
-        &__footer{
-            z-index: 101;
-            border-radius: 0 0 5px 5px;
-            background-color: v-bind('color');
-            align-items: center;
-            padding: 0 10px;
-        }
+        padding: 10px;
+        padding-top: 15px;
+    }
+    &__footer{
+        z-index: 101;
+        border-radius: 0 0 5px 5px;
+        background-color: v-bind('color');
+        align-items: center;
+        padding: 0 10px;
     }
 }
 </style>

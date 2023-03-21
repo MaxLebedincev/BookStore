@@ -5,6 +5,7 @@
         color="#670067"
         text-color="rgba(255,255,255,.6)"
         active-text-color="rgba(255,255,255,1)"
+        :class="!this.$store.state.isNightTheme ? 'navigator__light-theme' : 'navigator__night-theme'"
     >
         <div class="navigator-title">
             Императорская библиотека
@@ -46,7 +47,6 @@
                     color="#000"
                     vs-icon="wb_sunny"
                     vs-icon-on="nights_stay"
-                    @change="click"
                 />
             </div>
             <div class="navigator-setting-shop">
@@ -69,14 +69,16 @@ export default {
     data() {
         return {
             indexActives: 0,
-            isDark: false,
+            isDark: this.$store.state.isNightTheme,
             isNotice: false
         }
     },
-    methods: {
-        click() {
-            localStorage.setItem('inverse', this.isDark)
+    watch: {
+        isDark(value) {
+            this.$store.state.isNightTheme = value;
         }
+    },
+    methods: {
     }
 }
 </script>
@@ -85,8 +87,6 @@ export default {
 .navigator {
 
     z-index: 100;
-    background-image: linear-gradient(30deg,rgba(249, 31, 67,1),rgba(249, 31, 67,.5)) !important;
-    box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
 
     .vs-con-items{
         width: 100%;
@@ -125,6 +125,16 @@ export default {
             }
         }
     }
+
+    &__light-theme{
+        background-image: linear-gradient(30deg,rgba(249, 31, 67,1),rgba(249, 31, 67,.5)) !important;
+        box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
+    }
+    &__night-theme{
+        background-image: linear-gradient(30deg, #111, rgba(91, 5, 19, 0.65)) !important;
+        box-shadow: none;
+    }
+
 }
 
 </style>
