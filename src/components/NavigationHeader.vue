@@ -12,14 +12,14 @@
         </div>
 
         <div class="navigator-menu">
-            <vs-navbar-item index="0" >
-                <router-link to="/">
-                    <div class="navigator-menu-text">Товары</div>
-                </router-link>
-            </vs-navbar-item>
-            <vs-navbar-item index="1">
+            <vs-navbar-item index="0">
                 <router-link to="/about">
                     <div class="navigator-menu-text">О нас</div>
+                </router-link>
+            </vs-navbar-item>
+            <vs-navbar-item index="1" >
+                <router-link to="/">
+                    <div class="navigator-menu-text">Товары</div>
                 </router-link>
             </vs-navbar-item>
             <vs-navbar-item index="2">
@@ -68,14 +68,23 @@ export default {
     },
     data() {
         return {
-            indexActives: 0,
+            indexActives: 1,
             isDark: this.$store.state.isNightTheme,
+            cssoptionsitemspan: '#040404',
+            cssoptionslispan: '#FFFFFF',
+            cssoptionsbackgroundcolor: '',
+            cssoptionscolor: '',
             isNotice: false
         }
     },
     watch: {
         isDark(value) {
             this.$store.state.isNightTheme = value;
+            // this.cssoptionsitemspan = value ? '#FFFFFF' : '#040404';
+            // this.cssoptionslispan = value ? '#000000' : '#FFFFFF';
+            // this.cssoptionsbackgroundcolor = value ? '#131313 !important' : '';
+            // this.cssoptionscolor = value ? '#FFFFFF' : '';
+            // console.log(this.cssoptionsitemspan);
         }
     },
     methods: {
@@ -136,5 +145,26 @@ export default {
     }
 
 }
-
+//.vs-select--options{
+//    background-color: #131313 !important;
+//    color: #FFFFFF;
+//    .vs-select--item {
+//        span {
+//            font-size: 16px;
+//            color: #FFFFFF;
+//            //color: rgba(0,0,0,.8);
+//        }
+//    }
+//    li:hover{
+//        span {
+//            color: #000000 !important;
+//        }
+//    }
+//}
+//.vs-select--options{
+//    .vs-select--item span{
+//        font-size: 16px;
+//        color: v-bind(cssoptionsitemspan);
+//    }
+//}
 </style>

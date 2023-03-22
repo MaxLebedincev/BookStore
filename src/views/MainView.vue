@@ -1,8 +1,19 @@
 <template>
-    <div class="page">
+    <div
+        class="page"
+        :class="!this.$store.state.isNightTheme ? 'page--light-theme' : 'page--night-theme'"
+    >
         <div class="search">
             <div class="search-menu">
-                <vs-input  icon-after="true" class="search-menu__input" color="#c52026" icon="search" placeholder="Поиск" v-model="input" size="large"/>
+                <vs-input
+                    icon-after="true"
+                    class="search-menu__input"
+                    color="#c52026"
+                    icon="search"
+                    placeholder="Поиск"
+                    v-model="input"
+                    size="large"
+                />
                 <vs-button
                     class="search-menu__icon"
                     color="#c52026"
@@ -13,6 +24,7 @@
             </div>
             <vs-select
                 class="search-select"
+                color="green"
                 v-model="selectS"
             >
                 <vs-select-group title="Сортировать по">
@@ -25,8 +37,10 @@
                 </vs-select-group>
             </vs-select>
         </div>
-        <div class="filter">
-            <div class="genre" >
+        <div
+            class="filter page-elem"
+        >
+            <div class="genre">
                 <vs-checkbox
                     class="genre__elem"
                     v-for="(tag, index) in tags"
@@ -48,7 +62,7 @@
                 :inverse="inverse"
             ></product-card>
         </div>
-        <div class="pagination">
+        <div class="pagination page-elem">
             <vs-pagination color="#640064" :total="20" v-model="currentx" goto></vs-pagination>
         </div>
     </div>
@@ -142,7 +156,8 @@ export default {
                     icon: "favorite",
                     id: Date.now()
                 }
-            ]
+            ],
+            temp: true
         }
     },
     methods: {
@@ -154,6 +169,42 @@ export default {
 </script>
 
 <style lang="scss">
+.page{
+    &--light-theme{
+
+    }
+    &--night-theme{
+        .vs-input--input{
+            background-color: #202020;
+        }
+        .search {
+            .search-menu__input .vs-con-input{
+                    input, span{
+                        color: #FFFFFF;
+                    }
+                    .vs-input--placeholder{
+                        color: #BFBFBF !important;
+                    }
+            }
+            .search-select {
+                .vs-select--input {
+                    background-color: #202020;
+                    color: #FFFFFF;
+                }
+            }
+            .search-menu__icon {
+                background-color: #202020 !important;
+            }
+        }
+        .vs-input--icon{
+            color: rgba(255, 255, 255, 0.4);
+            .icon-after {
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        }
+
+    }
+}
 .search {
     .search-menu {
         &__input {
@@ -188,10 +239,10 @@ export default {
         .vs-select--input{
             height: 100%;
             font-size: 16px;
-            color: rgba(0,0,0,.8);
+            //color: rgba(0,0,0,.8);
         }
         .vs-select--input:hover{
-            border-color: #c52026
+            //border-color: #c52026
         }
     }
 }
@@ -220,12 +271,28 @@ export default {
         background-image: linear-gradient(30deg,rgba(249, 31, 67,1),rgba(249, 31, 67,.5)) !important;
     }
 }
-.vs-select--options{
-    .vs-select--item span{
-        font-size: 16px;
-        color: rgba(0,0,0,.8)
-    }
-}
+//.vs-select--options + #app .app--night-theme{
+//    background-color: #131313 !important;
+//    color: #FFFFFF;
+//    .vs-select--item {
+//        span {
+//            font-size: 16px;
+//            color: #FFFFFF;
+//            //color: rgba(0,0,0,.8);
+//        }
+//    }
+//    li:hover{
+//        span {
+//            color: #000000 !important;
+//        }
+//    }
+//}
+//.vs-select--options  + #app .app--light-theme{
+//    .vs-select--item span{
+//        font-size: 16px;
+//        color: #040404;
+//    }
+//}
 </style>
 <style lang="scss" scoped>
 .page {
@@ -239,6 +306,19 @@ export default {
     grid-template-rows: 50px 1fr 60px;
     grid-gap: 15px;
     margin: auto;
+
+    &--light-theme{
+
+    }
+    &--night-theme{
+        color: #FFFFFF;
+        .page-elem{
+            background-color: #202020;
+        }
+        .vs-input--input{
+            background-color: #202020;
+        }
+    }
 }
 .search {
     grid-area: search;

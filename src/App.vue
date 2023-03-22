@@ -1,7 +1,7 @@
 <template>
     <div
         class="app"
-        :class="!this.$store.state.isNightTheme ? 'app__light-theme' : 'app__night-theme'"
+        :class="!this.$store.state.isNightTheme ? 'app--light-theme' : 'app--night-theme'"
     >
         <div class="navigation">
             <navigation-header
@@ -23,7 +23,7 @@ export default {
 
     data(){
         return{
-            indexActive: 0,
+            indexActive: 1,
         }
     }
 }
@@ -47,11 +47,11 @@ html, body {
     display: grid;
     grid-template-rows: 10% 90%;
 
-    &__light-theme {
+    &--light-theme {
         background-color: #FFFFFF;
     }
-    &__night-theme {
-        background-color: #110c10e0;
+    &--night-theme {
+        background-color: #161616;
     }
 
     .navigation{
