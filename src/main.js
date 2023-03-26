@@ -2,8 +2,9 @@ import { createApp, h } from 'vue'
 import App from './App.vue'
 import router from "@/router/router";
 
-import Vuesax from 'vuesax3'
-import 'vuesax3/dist/vuesax.css'
+import vuetify from './plugins/vuetify'
+import { loadFonts } from './plugins/webfontloader'
+
 import 'material-icons/iconfont/material-icons.css';
 
 import { createStore } from 'vuex'
@@ -16,6 +17,8 @@ export const store = createStore({
     }
 })
 
+loadFonts()
+
 const app = createApp({
     render: ()=>h(App)
 });
@@ -23,5 +26,5 @@ const app = createApp({
 app
     .use(store)
     .use(router)
-    .use(Vuesax)
+    .use(vuetify)
     .mount('#app')

@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <vs-pagination :total="20" v-model="currentx" goto ></vs-pagination>
+
     </div>
 </template>
 

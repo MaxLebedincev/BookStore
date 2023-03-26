@@ -1,94 +1,99 @@
 <template>
-    <div
-        class="app"
-        :class="!this.$store.state.isNightTheme ? 'app--light-theme' : 'app--night-theme'"
-    >
-        <div class="navigation">
-            <navigation-header
-                class="navigation-element"
-                :index-active="indexActive"
-            ></navigation-header>
-        </div>
-        <div class="page-list">
+    <v-app>
+        <v-app-bar :elevation="8" class="px-3">
+            <template #title>
+                Императорская библеотека
+            </template>
+            <template #default>
+                <v-tabs
+                    centered
+                    color="grey-darken-2"
+                >
+                    <v-tab
+                        v-for="link in routes"
+                        :key="link"
+                        @click="$router.push(link.link)"
+                    >
+                        {{link.name}}
+                    </v-tab>
+                </v-tabs>
+            </template>
+            <template #append>
+                <v-switch
+                    v-model="isNotification"
+                    true-icon="mdi-bell-ring"
+                    false-icon="mdi-bell-off"
+                    width="50px"
+                    hide-details
+                    inset
+                ></v-switch>
+                <v-switch
+                    v-model="isDark"
+                    true-icon="mdi-weather-sunny"
+                    false-icon="mdi-weather-sunny-off"
+                    hide-details
+                    inset
+                ></v-switch>
+                <v-avatar
+                    class="hidden-sm-and-down"
+                    color="grey-darken-1"
+                    size="48"
+                ></v-avatar>
+            </template>
+            <template #image>
+                <v-img
+                    cover
+                    src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+                ></v-img>
+            </template>
+        </v-app-bar>
+        <v-main>
             <router-view></router-view>
-        </div>
-    </div>
+        </v-main>
+    </v-app>
 </template>
 
 <script>
-import NavigationHeader from "@/components/NavigationHeader";
 export default {
-    name: "App",
-    components: {NavigationHeader},
+    name: 'App',
 
-    data(){
-        return{
-            indexActive: 1,
-        }
+    components: {
+    },
+
+    data: () => ({
+        isDark: false,
+        isNotification: false,
+        routes: [
+            {
+                link: '/about',
+                name: 'О нас'
+            },
+            {
+                link: '/',
+                name: 'Товары'
+            },
+            {
+                link: '/home',
+                name: 'Админ панель'
+            },
+            {
+                link: '/home',
+                name: 'Личный кабинет'
+            }
+        ]
+    }),
+    methods: {
     }
 }
 </script>
 
 <style lang="scss">
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-html, body {
-    height: 100%;
-}
-#app{
-    height: 100%;
-}
-
-.app{
-    height: 100%;
-    display: grid;
-    grid-template-rows: 10% 90%;
-
-    &--light-theme {
-        background-color: #FFFFFF;
-    }
-    &--night-theme {
-        background-color: #161616;
-    }
-
-    .navigation{
-        height: 100%;
-
-        .navigation-element {
-            height: 60px;
-        }
-    }
-    .page-list{
-        width: 100%;
-        display: flex;
+html {   overflow-y: auto !important; }
+</style>
+<style lang="scss" scoped>
+.v-toolbar__append {
+    div {
+        margin: 0px 10px;
     }
 }
-
-/*#region Scrollbar*/
-
-/*Scrollbar for FireFox*/
-
-html, body {
-    scrollbar-width: thin;          /* "auto" или "thin" */
-    scrollbar-color: #ff9000 #ffc77e;   /* цвет бегунка и зоны отслеживания */
-}
-
-/*Scrollbar for Chrome, Edge, Safari*/
-
-body::-webkit-scrollbar {
-    width: 8px;               /* ширина всей полосы прокрутки */
-}
-body::-webkit-scrollbar-track {
-    background: #ffc77e;        /* цвет зоны отслеживания */
-}
-
-body::-webkit-scrollbar-thumb {
-    background-color: #ff9000;    /* цвет бегунка */
-}
-
-/*#endregion Scrollbar */
-
 </style>
