@@ -30,14 +30,30 @@
         </v-row>
         <v-row class="product" align-self="center">
             <v-col cols="9">
-                <v-container class="content max-width">
-                    {{text}}
-                </v-container>
-                <v-pagination
-                    class="pagination"
-                    v-model="page"
-                    :length="15"
-                ></v-pagination>
+                <div class="container">
+                    <v-container class="content max-width">
+                        <v-card
+                            class="content-card"
+                            v-for="book in books"
+                            :key="book.id"
+                            height="300px"
+                            width="200px"
+                        >
+                            <v-img
+                                src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                                height="200px"
+                                cover
+                            ></v-img>
+                        </v-card>
+                    </v-container>
+                    <div class="container-pagination">
+                        <v-pagination
+                            class="pagination"
+                            v-model="page"
+                            :length="15"
+                        ></v-pagination>
+                    </div>
+                </div>
             </v-col>
             <v-col cols="3">
                 <v-card
@@ -58,6 +74,56 @@ export default {
         isPopularity: true,
         page: 1,
         filterOptions: ['рейтингу', 'дате добавления'],
+        books: [
+            {
+                id: Date.now(),
+                elem: ''
+            },
+            {
+                id: Date.now(),
+                elem: ''
+            },
+            {
+                id: Date.now(),
+                elem: ''
+            },
+            {
+                id: Date.now(),
+                elem: ''
+            },
+            {
+                id: Date.now(),
+                elem: ''
+            },
+            {
+                id: Date.now(),
+                elem: ''
+            },
+            {
+                id: Date.now(),
+                elem: ''
+            },
+            {
+                id: Date.now(),
+                elem: ''
+            },
+            {
+                id: Date.now(),
+                elem: ''
+            },
+            {
+                id: Date.now(),
+                elem: ''
+            },
+            {
+                id: Date.now(),
+                elem: ''
+            },
+            {
+                id: Date.now(),
+                elem: ''
+            },
+        ],
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     }),
     methods: {
@@ -77,7 +143,6 @@ export default {
         margin-top: 0px;
     }
     .search{
-        height: 10%;
         .search-input {
             display: flex;
             .switch-popularity {
@@ -86,12 +151,23 @@ export default {
         }
     }
     .product {
-        height: 90%;
+        .container{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            .container-pagination{
+            }
+        }
         .content{
-            height: 90%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            &-card{
+                margin-bottom: 10px;
+            }
         }
         .pagination {
-            height: 10%;
             display: flex;
             align-items: center;
             justify-content: center;
