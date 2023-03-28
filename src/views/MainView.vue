@@ -1,6 +1,6 @@
 <template>
-    <v-container class="page fill-height">
-        <v-row class="search" align="start">
+    <v-container class="page">
+        <v-row class="search">
             <v-col cols="9">
                 <div class="search-input">
                     <v-text-field
@@ -28,36 +28,29 @@
                 ></v-select>
             </v-col>
         </v-row>
-        <v-row class="product" align-self="center">
-            <v-col cols="9">
-                <div class="container">
-                    <v-container class="content max-width">
-                        <v-card
-                            class="content-card"
-                            v-for="book in books"
-                            :key="book.id"
-                            height="300px"
-                            width="200px"
-                        >
-                            <v-img
-                                src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-                                height="200px"
-                                cover
-                            ></v-img>
-                        </v-card>
-                    </v-container>
-                    <div class="container-pagination">
-                        <v-pagination
-                            class="pagination"
-                            v-model="page"
-                            :length="15"
-                        ></v-pagination>
-                    </div>
+        <v-row class="product">
+            <v-col cols="9" class="container">
+                <v-container class="content max-width">
+                    <custom-card
+                        v-for="book in books"
+                        :key="book.id"
+                        :modelValue="book"
+                        height="300px"
+                        width="200px"
+                    >
+                    </custom-card>
+                </v-container>
+                <div class="container-pagination">
+                    <v-pagination
+                        class="pagination"
+                        v-model="page"
+                        :length="15"
+                    ></v-pagination>
                 </div>
             </v-col>
-            <v-col cols="3">
+            <v-col cols="3" class="filter">
                 <v-card
-                    class="filter"
+                    class="filter-card"
                     elevation="4"
                     :text="text"
                 ></v-card>
@@ -67,8 +60,10 @@
 </template>
 
 <script>
+import CustomCard from "@/components/CustomCard";
 export default {
     name: "MainView",
+    components: {CustomCard},
     data: ()=> ({
         inputSearch: '',
         isPopularity: true,
@@ -77,51 +72,78 @@ export default {
         books: [
             {
                 id: Date.now(),
-                elem: ''
+                name: "Продукт 1",
+                price: 12000,
+                img: "product.jpg",
+                star: 2.56,
+                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                tags: [
+                    {
+                        name: "Боевик",
+                        icon: "mdi-bell-ring",
+                        id: Date.now()
+                    },
+                    {
+                        name: "Комедия",
+                        icon: "mdi-bell-ring",
+                        id: Date.now()
+                    },
+                    {
+                        name: "Романтика",
+                        icon: "mdi-bell-ring",
+                        id: Date.now()
+                    }
+                ]
             },
             {
                 id: Date.now(),
-                elem: ''
+                name: "Продукт 1",
+                price: 12000,
+                img: "product.jpg",
+                star: 2.56,
+                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                tags: [
+                    {
+                        name: "Боевик",
+                        icon: "mdi-bell-ring",
+                        id: Date.now()
+                    },
+                    {
+                        name: "Комедия",
+                        icon: "mdi-bell-ring",
+                        id: Date.now()
+                    },
+                    {
+                        name: "Романтика",
+                        icon: "mdi-bell-ring",
+                        id: Date.now()
+                    }
+                ]
             },
             {
                 id: Date.now(),
-                elem: ''
-            },
-            {
-                id: Date.now(),
-                elem: ''
-            },
-            {
-                id: Date.now(),
-                elem: ''
-            },
-            {
-                id: Date.now(),
-                elem: ''
-            },
-            {
-                id: Date.now(),
-                elem: ''
-            },
-            {
-                id: Date.now(),
-                elem: ''
-            },
-            {
-                id: Date.now(),
-                elem: ''
-            },
-            {
-                id: Date.now(),
-                elem: ''
-            },
-            {
-                id: Date.now(),
-                elem: ''
-            },
-            {
-                id: Date.now(),
-                elem: ''
+                name: "Продукт 1",
+                price: 12000,
+                img: "product.jpg",
+                star: 2.56,
+                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                tags: [
+                    {
+                        name: "Боевик",
+                        icon: "mdi-bell-ring",
+                        id: Date.now()
+                    },
+                    {
+                        name: "Комедия",
+                        icon: "mdi-bell-ring",
+                        id: Date.now()
+                    },
+                    {
+                        name: "Романтика",
+                        icon: "mdi-bell-ring",
+                        id: Date.now()
+                    }
+                ]
             },
         ],
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -139,10 +161,13 @@ export default {
 
 <style lang="scss" scoped>
 .page{
-    .v-row + .v-row {
-        margin-top: 0px;
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
     .search{
+        height: 10%;
+        align-content: center;
         .search-input {
             display: flex;
             .switch-popularity {
@@ -151,30 +176,28 @@ export default {
         }
     }
     .product {
+        height: 90%;
+
         .container{
             display: flex;
             flex-direction: column;
-            width: 100%;
-            .container-pagination{
-            }
-        }
-        .content{
-            display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
-            align-items: flex-start;
-            &-card{
-                margin-bottom: 10px;
+            .content{
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px,auto));
+                grid-row-gap: 10px;
+                &-card{
+
+                }
             }
-        }
-        .pagination {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0px 1px 4px -1px;
+            .pagination {
+                box-shadow: 0px 1px 4px -1px;
+            }
         }
         .filter{
             height: 100%;
+            &-card{
+            }
         }
     }
 }

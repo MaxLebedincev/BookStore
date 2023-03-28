@@ -5,14 +5,14 @@
                 <v-card
                     title="О нас"
                     elevation="4"
-                    :text="text"
+                    :text="about"
                 ></v-card>
             </v-col>
             <v-col>
                 <v-card
                     title="Наши партнеры"
                     elevation="4"
-                    :text="text"
+                    :text="partners"
                 ></v-card>
             </v-col>
         </v-row>
@@ -21,21 +21,21 @@
                 <v-card
                     title="Работайте вместе с нами"
                     elevation="4"
-                    :text="text"
+                    :text="work"
                 ></v-card>
             </v-col>
             <v-col>
                 <v-card
                     title="Выйдите с нами на связь"
                     elevation="4"
-                    :text="text"
+                    :text="connect"
                 ></v-card>
             </v-col>
             <v-col>
                 <v-card
                     title="Авторское право"
                     elevation="4"
-                    :text="text"
+                    :text="author"
                 ></v-card>
             </v-col>
         </v-row>
@@ -46,9 +46,18 @@
 export default {
     name: "AboutView",
     data: () => ({
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n' +
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n',
-     })
+        about: 'Наш книжный интернет-магазин - это место, где вы можете найти любую книгу, которую ищете. У нас огромный выбор книг по самым разным темам: от классической литературы до современных бестселлеров. Мы предлагаем только качественную литературу от известных авторов и издательств. \n' +
+            '\n' +
+            'Удобный интерфейс нашего сайта позволяет быстро и легко найти нужную книгу, используя различные фильтры и категории. Мы также предлагаем подробные описания каждой книги, а также отзывы наших клиентов, чтобы помочь вам сделать правильный выбор.\n' +
+            '\n' +
+            'Мы гарантируем быструю доставку по всей стране и удобные способы оплаты. Наша команда всегда готова помочь вам в любых вопросах, связанных с выбором и покупкой книг.\n' +
+            '\n' +
+            'Заказывайте книги в нашем интернет-магазине и наслаждайтесь чтением лучших произведений мировой литературы!',
+        partners: 'Мы интернет-магазин по продаже книг и с гордостью сообщаем, что среди наших партнеров такие уважаемые образовательные учреждения, как школы и университеты, а также библиотеки, книжные клубы, кафе и рестораны, компании и фирмы, туристические компании и интернет-ресурсы. Мы предлагаем им специальные условия на покупку книг и гарантируем высокое качество нашей продукции и быструю доставку.',
+        work: 'Работа в нашем интернет-магазине книг - это возможность не только зарабатывать, но и развиваться в области литературы. Вы будете работать с книгами самых разных жанров и направлений, узнаете много нового и интересного. Кроме того, у нас дружный коллектив и приятная рабочая атмосфера. Мы готовы предоставить гибкий график работы и возможность удаленной работы. Присоединяйтесь к нашей команде и помогайте людям находить именно те книги, которые им нужны!',
+        connect: 'По поводу работы звоните по номеру +8-800-555-35-35',
+        author: 'Наш нижный интернет-магазин имеет авторские права на свой логотип, дизайн сайта, тексты описаний книг и другие материалы, созданные нашей командой. Однако, права на книги, которые продаете, принадлежат их авторам и издательствам. Наш магазин соблюдает законы об авторских правах и не нарушает их, приобретая и продавая книги.'
+    })
 }
 </script>
 
