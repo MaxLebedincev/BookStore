@@ -6,8 +6,23 @@
             @mouseleave="upHere = false"
             height="300px"
             width="200px"
-            :image="getImg(modelValue.img)"
-        ></v-card>
+        >
+            <v-img
+                :src="getImg(modelValue.img)"
+                class="align-end"
+                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                height="300px"
+                cover
+            >
+                <v-card-actions class="card-footer">
+                    <div class="card-title">{{modelValue.name}}</div>
+                    <div style="display: flex; justify-content: flex-end">
+                        <v-btn size="small" color="#dd0000" variant="text" icon="mdi-heart"></v-btn>
+                        <v-btn size="small" color="#dd0000" variant="text" icon="mdi-bookmark"></v-btn>
+                    </div>
+                </v-card-actions>
+            </v-img>
+        </v-card>
         <div class="popup" type="flex" v-if="upHere">
             <div class="popup__header">
                 <h3 class="popup__header__name">{{modelValue.name}}</h3>
@@ -64,10 +79,18 @@ export default {
     display: flex;
     .card {
         display: inline-block;
+        &-footer{
+            background: rgba(0,0,0,0.4) ;
+        }
+        &-title{
+            opacity: 1;
+            width: 100px;
+            color: #FFFFFF
+        }
     }
     .popup {
         position: absolute;
-        transform: translate(180px, -105px);
+        transform: translate(220px, -105px);
         opacity: 0.9;
         max-width: 300px;
         align-content: flex-end;
