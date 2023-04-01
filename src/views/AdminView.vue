@@ -1,8 +1,11 @@
 <template>
-    <v-container class="fill-height">
-        <v-row style="height: 100%">
+    <v-container>
+        <v-row>
             <v-col cols="2">
-                <v-card>
+                <v-card class="card-menu">
+                    <template #title>
+                        Добавление
+                    </template>
                     <v-tabs
                         v-model="tabOpt"
                         direction="vertical"
@@ -12,269 +15,324 @@
                             <v-icon start>
                                 mdi-account
                             </v-icon>
-                            Добавить клиента
+                            <div class="tab-title">
+                                клиента
+                            </div>
                         </v-tab>
                         <v-tab value="option-2">
                             <v-icon start>
                                 mdi-lock
                             </v-icon>
-                            Добавить книгу
+                            книг
                         </v-tab>
                         <v-tab value="option-3">
                             <v-icon start>
                                 mdi-access-point
                             </v-icon>
-                            Добавить жанр
+                            жанра
                         </v-tab>
+                    </v-tabs>
+                </v-card>
+                <v-card class="card-menu">
+                    <template #title>
+                        Таблицы
+                    </template>
+                    <v-tabs
+                        v-model="tabOpt"
+                        direction="vertical"
+                        color="primary"
+                    >
                         <v-tab value="option-4">
                             <v-icon start>
                                 mdi-access-point
                             </v-icon>
-                            Таблица пользователей
+                            пользователей
                         </v-tab>
                         <v-tab value="option-5">
                             <v-icon start>
                                 mdi-access-point
                             </v-icon>
-                            Таблица книг
+                            книг
                         </v-tab>
                         <v-tab value="option-6">
                             <v-icon start>
                                 mdi-access-point
                             </v-icon>
-                            Таблица жанров
+                            жанров
                         </v-tab>
                     </v-tabs>
                 </v-card>
             </v-col>
             <v-col cols="10">
-                <v-card>
-                    <v-window v-model="tabOpt">
-                        <v-window-item value="option-1">
-                            <v-card flat>
-                                <template #title>
-                                    Добавление пользователя
-                                </template>
-                                <template #text>
-                                    <v-text-field
-                                        label="Имя"
-                                        hide-details="auto"
-                                    ></v-text-field>
-                                    <v-text-field
-                                        label="Пароль"
-                                        hide-details="auto"
-                                    ></v-text-field>
-                                    <v-text-field
-                                        label="Email"
-                                        hide-details="auto"
-                                    ></v-text-field>
-                                </template>
-                                <template #actions>
-                                    <v-btn variant="outlined" class="card-button">
-                                        Добавить
-                                    </v-btn>
-                                </template>
-                            </v-card>
-                        </v-window-item>
-                        <v-window-item value="option-2">
-                            <v-card flat>
-                                <template #title>
-                                    Добавление книги
-                                </template>
-                                <template #text>
-                                    <v-text-field
-                                        label="Наименование"
-                                        hide-details="auto"
-                                    ></v-text-field>
-                                    <v-text-field
-                                        label="Цена"
-                                        hide-details="auto"
-                                    ></v-text-field>
-                                    <v-select
-                                        :modelValue="favorites"
-                                        :items="states"
-                                        label="Жанры"
-                                        multiple
-                                        persistent-hint
-                                        hide-details="auto"
-                                    ></v-select>
-                                    <v-text-field
-                                        label="Автор"
-                                        hide-details="auto"
-                                    ></v-text-field>
-                                    <v-textarea
-                                        label="Описание"
-                                        hide-details="auto"
-                                    ></v-textarea>
-                                    <v-file-input
-                                        label="Изображение"
-                                    ></v-file-input>
-                                </template>
-                                <template #actions>
-                                    <v-btn variant="outlined" class="card-button">
-                                        Добавить
-                                    </v-btn>
-                                </template>
-                            </v-card>
-                        </v-window-item>
-                        <v-window-item value="option-3">
-                            <v-card flat>
-                                <template #title>
-                                    Добавление жанра
-                                </template>
-                                <template #text>
-                                    <v-text-field
-                                        label="Наименование"
-                                        hide-details="auto"
-                                    ></v-text-field>
-                                    <v-select
-                                        :modelValue="favorites"
-                                        :items="states"
-                                        label="Картинки"
-                                        multiple
-                                        persistent-hint
-                                        hide-details="auto"
-                                    ></v-select>
-                                </template>
-                                <template #actions>
-                                    <v-btn variant="outlined" class="card-button">
-                                        Добавить
-                                    </v-btn>
-                                </template>
-                            </v-card>
-                        </v-window-item>
-                        <v-window-item value="option-4">
-                            <v-card flat>
-                                <template #title>
-                                    Таблица пользователей
-                                </template>
-                                <template #text>
-                                    <v-table>
-                                        <thead>
-                                        <tr>
-                                            <th>
-                                                Имя
-                                            </th>
-                                            <th>
-                                                Пароль
-                                            </th>
-                                            <th>
-                                                Дата добавления
-                                            </th>
-                                            <th
-                                                class="text-right"
-                                            ></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr
-                                            v-for="item in desserts"
-                                            :key="item.name"
-                                        >
-                                            <td>{{ item.name }}</td>
-                                            <td>{{ item.calories }}</td>
-                                            <td>{{ item.calories }}</td>
-                                            <td  class="text-right">
-                                                <v-btn variant="text">
-                                                   Редактировать
-                                                </v-btn>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </v-table>
-                                </template>
-                            </v-card>
-                        </v-window-item>
-                        <v-window-item value="option-5">
-                            <v-card flat>
-                                <template #title>
-                                    Таблица книг
-                                </template>
-                                <template #text>
-                                    <v-table>
-                                        <thead>
-                                        <tr>
-                                            <th>
-                                                Имя
-                                            </th>
-                                            <th>
-                                                Цена
-                                            </th>
-                                            <th>
-                                                Автор
-                                            </th>
-                                            <th>
-                                                Описания
-                                            </th>
-                                            <th>
-                                                Дата добавления
-                                            </th>
-                                            <th
-                                                class="text-right"
-                                            ></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr
-                                            v-for="item in desserts"
-                                            :key="item.name"
-                                        >
-                                            <td>{{ item.name }}</td>
-                                            <td>{{ item.calories }}</td>
-                                            <td>{{ item.name }}</td>
-                                            <td>{{ item.name }}</td>
-                                            <td>{{ item.name }}</td>
-                                            <td  class="text-right">
-                                                <v-btn variant="text">
-                                                    Редактировать
-                                                </v-btn>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </v-table>
-                                </template>
-                            </v-card>
-                        </v-window-item>
-                        <v-window-item value="option-6">
-                            <v-card flat>
-                                <template #title>
-                                    Таблица жанров
-                                </template>
-                                <template #text>
-                                    <v-table>
-                                        <thead>
-                                        <tr>
-                                            <th>
-                                                Имя
-                                            </th>
-                                            <th>
-                                                Картинка
-                                            </th>
-                                            <th
-                                                class="text-right"
-                                            ></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr
-                                            v-for="item in desserts"
-                                            :key="item.name"
-                                        >
-                                            <td>{{ item.name }}</td>
-                                            <td>{{ item.name }}</td>
-                                            <td  class="text-right">
-                                                <v-btn variant="text">
-                                                    Редактировать
-                                                </v-btn>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </v-table>
-                                </template>
-                            </v-card>
-                        </v-window-item>
-                    </v-window>
-                </v-card>
+                <div>
+                    <v-card class="info">
+                        <v-window v-model="tabOpt">
+                            <v-window-item value="option-1">
+                                <v-card flat>
+                                    <template #title>
+                                        Добавление пользователя
+                                    </template>
+                                </v-card>
+                            </v-window-item>
+                            <v-window-item value="option-2">
+                                <v-card flat>
+                                    <template #title>
+                                        Добавление книги
+                                    </template>
+                                </v-card>
+                            </v-window-item>
+                            <v-window-item value="option-3">
+                                <v-card flat>
+                                    <template #title>
+                                        Добавление жанра
+                                    </template>
+                                </v-card>
+                            </v-window-item>
+                            <v-window-item value="option-4">
+                                <v-card class="card-table" flat>
+                                    <template #title>
+                                        Таблица пользователей
+                                    </template>
+                                    <template #text>
+                                        <v-table>
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                    Имя
+                                                </th>
+                                                <th>
+                                                    Пароль
+                                                </th>
+                                                <th>
+                                                    Дата добавления
+                                                </th>
+                                                <th
+                                                    class="text-right"
+                                                ></th>
+                                            </tr>
+                                            </thead>
+                                        </v-table>
+                                    </template>
+                                </v-card>
+                            </v-window-item>
+                            <v-window-item value="option-5">
+                                <v-card class="card-table" flat>
+                                    <template #title>
+                                        Таблица книг
+                                    </template>
+                                    <template #text>
+                                        <v-table>
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                    Имя
+                                                </th>
+                                                <th>
+                                                    Цена
+                                                </th>
+                                                <th>
+                                                    Автор
+                                                </th>
+                                                <th>
+                                                    Описания
+                                                </th>
+                                                <th>
+                                                    Дата добавления
+                                                </th>
+                                                <th
+                                                    class="text-right"
+                                                ></th>
+                                            </tr>
+                                            </thead>
+                                        </v-table>
+                                    </template>
+                                </v-card>
+                            </v-window-item>
+                            <v-window-item value="option-6">
+                                <v-card class="card-table" flat>
+                                    <template #title>
+                                        Таблица жанров
+                                    </template>
+                                    <template #text>
+                                        <v-table>
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                    Имя
+                                                </th>
+                                                <th>
+                                                    Картинка
+                                                </th>
+                                                <th
+                                                    class="text-right"
+                                                ></th>
+                                            </tr>
+                                            </thead>
+                                        </v-table>
+                                    </template>
+                                </v-card>
+                            </v-window-item>
+                        </v-window>
+                    </v-card>
+                    <v-card class="content">
+                        <v-window v-model="tabOpt">
+                            <v-window-item value="option-1">
+                                <v-card class="card-input" flat>
+                                    <template #text>
+                                        <v-text-field
+                                            label="Имя"
+                                            hide-details="auto"
+                                        ></v-text-field>
+                                        <v-text-field
+                                            label="Пароль"
+                                            hide-details="auto"
+                                        ></v-text-field>
+                                        <v-text-field
+                                            label="Email"
+                                            hide-details="auto"
+                                        ></v-text-field>
+                                    </template>
+                                    <template #actions>
+                                        <v-btn variant="outlined" class="card-button">
+                                            Добавить
+                                        </v-btn>
+                                    </template>
+                                </v-card>
+                            </v-window-item>
+                            <v-window-item value="option-2">
+                                <v-card class="card-input" flat>
+                                    <template #text>
+                                        <v-text-field
+                                            label="Наименование"
+                                            hide-details="auto"
+                                        ></v-text-field>
+                                        <v-text-field
+                                            label="Цена"
+                                            hide-details="auto"
+                                        ></v-text-field>
+                                        <v-select
+                                            :modelValue="favorites"
+                                            :items="states"
+                                            label="Жанры"
+                                            multiple
+                                            persistent-hint
+                                            hide-details="auto"
+                                        ></v-select>
+                                        <v-text-field
+                                            label="Автор"
+                                            hide-details="auto"
+                                        ></v-text-field>
+                                        <v-textarea
+                                            label="Описание"
+                                            hide-details="auto"
+                                        ></v-textarea>
+                                        <v-file-input
+                                            label="Изображение"
+                                        ></v-file-input>
+                                    </template>
+                                    <template #actions>
+                                        <v-btn variant="outlined" class="card-button">
+                                            Добавить
+                                        </v-btn>
+                                    </template>
+                                </v-card>
+                            </v-window-item>
+                            <v-window-item value="option-3">
+                                <v-card class="card-input" flat>
+                                    <template #text>
+                                        <v-text-field
+                                            label="Наименование"
+                                            hide-details="auto"
+                                        ></v-text-field>
+                                        <v-select
+                                            :modelValue="favorites"
+                                            :items="states"
+                                            label="Картинки"
+                                            multiple
+                                            persistent-hint
+                                            hide-details="auto"
+                                        ></v-select>
+                                    </template>
+                                    <template #actions>
+                                        <v-btn variant="outlined" class="card-button">
+                                            Добавить
+                                        </v-btn>
+                                    </template>
+                                </v-card>
+                            </v-window-item>
+                            <v-window-item value="option-4">
+                                <v-card flat class="card-table">
+                                    <template #text>
+                                        <v-table>
+                                            <tbody>
+                                            <tr
+                                                v-for="item in desserts"
+                                                :key="item.name"
+                                            >
+                                                <td>{{ item.name }}</td>
+                                                <td>{{ item.calories }}</td>
+                                                <td>{{ item.calories }}</td>
+                                                <td  class="text-right">
+                                                    <v-btn variant="text">
+                                                        Редактировать
+                                                    </v-btn>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </v-table>
+                                    </template>
+                                </v-card>
+                            </v-window-item>
+                            <v-window-item value="option-5">
+                                <v-card class="card-table" flat>
+                                    <template #text>
+                                        <v-table>
+                                            <tbody>
+                                            <tr
+                                                v-for="item in desserts"
+                                                :key="item.name"
+                                            >
+                                                <td>{{ item.name }}</td>
+                                                <td>{{ item.calories }}</td>
+                                                <td>{{ item.name }}</td>
+                                                <td>{{ item.name }}</td>
+                                                <td>{{ item.name }}</td>
+                                                <td  class="text-right">
+                                                    <v-btn variant="text">
+                                                        Редактировать
+                                                    </v-btn>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </v-table>
+                                    </template>
+                                </v-card>
+                            </v-window-item>
+                            <v-window-item value="option-6">
+                                <v-card class="card-table" flat>
+                                    <template #text>
+                                        <v-table>
+                                            <tbody>
+                                            <tr
+                                                v-for="item in desserts"
+                                                :key="item.name"
+                                            >
+                                                <td>{{ item.name }}</td>
+                                                <td>{{ item.name }}</td>
+                                                <td  class="text-right">
+                                                    <v-btn variant="text">
+                                                        Редактировать
+                                                    </v-btn>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </v-table>
+                                    </template>
+                                </v-card>
+                            </v-window-item>
+                        </v-window>
+                    </v-card>
+                </div>
             </v-col>
         </v-row>
     </v-container>
@@ -367,8 +425,38 @@ export default {
 }
 </script>
 
-<style scoped>
-.card-button {
-    margin-left: auto;
+<style lang="scss">
+.card-menu .v-btn {
+    text-overflow: ellipsis;
+}
+.info {
+    .card-table .v-card-text{
+        padding: 0 ;
+    }
+}
+.content  {
+    .card-input .v-field__overlay {
+        background-color: #FFFFFF;
+    }
+}
+</style>
+<style lang="scss" scoped>
+.card-menu {
+    margin-bottom: 25px;
+}
+.info {
+    margin-bottom: 25px;
+    .v-card-text{
+        padding: 0 ;
+    }
+}
+.content  {
+    .card-button {
+        margin-left: auto;
+    }
+    .card-table {
+        height: 70vh !important;
+        overflow-y: auto;
+    }
 }
 </style>
