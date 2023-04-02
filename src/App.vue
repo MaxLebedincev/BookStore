@@ -18,6 +18,9 @@ export default {
 
     data: () => ({
     }),
+    create() {
+        localStorage.setItem("inverse", 'light')
+    },
     methods: {
     }
 }

@@ -23,11 +23,13 @@
                 </v-card-actions>
             </v-img>
         </v-card>
-        <div class="popup" type="flex" v-if="upHere">
-            <div class="popup__header">
-                <h3 class="popup__header__name">{{modelValue.name}}</h3>
+        <v-card class="popup"  v-if="upHere">
+            <template #title>
+                <h3>{{modelValue.name}}</h3>
                 <hr>
-                <div class="popup__header__tag">
+            </template>
+            <template #text>
+                <div>
                     <c-tag
                         v-for="tag in [].concat(modelValue.tags).slice(0, 3)" :key="tag.id"
                         :name="tag.name"
@@ -35,17 +37,19 @@
                         :inverse="false"
                     ></c-tag>
                 </div>
-            </div>
-            <div class="popup__body">
-                {{modelValue.description}}
-            </div>
-            <div class="popup__footer">
-                <div>
-                </div>
-                <div>
-                    {{modelValue.star}}%
-                </div>
-            </div>
+                <hr class="popup-hr">
+                <p class="popup-text">
+                    {{modelValue.description}}
+                </p>
+            </template>
+        </v-card>
+        <div v-if="false" >
+            <c-tag
+                v-for="tag in [].concat(modelValue.tags).slice(0, 3)" :key="tag.id"
+                :name="tag.name"
+                :icon="tag.icon"
+                :inverse="false"
+            ></c-tag>
         </div>
     </div>
 </template>
@@ -75,54 +79,48 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.v-theme--dark{
+    .wrapper {
+        .card {
+            &-footer{
+                background: rgba(0,0,0,0.3) ;
+            }
+            &-title{
+                color: #ffffff
+            }
+        }
+    }
+}
 .wrapper {
     display: flex;
     .card {
         display: inline-block;
         &-footer{
-            background: rgba(0,0,0,0.4) ;
+            background: rgba(255,255,255,0.65) ;
         }
         &-title{
             opacity: 1;
             width: 100px;
-            color: #FFFFFF
+            color: #000000
         }
     }
     .popup {
         position: absolute;
         transform: translate(220px, -105px);
         opacity: 0.9;
-        max-width: 300px;
-        align-content: flex-end;
-
-        color: white;
         z-index: 100;
-        display: grid;
-        grid-template-rows: 25% auto 10%;
-
-        &__header{
-            border-radius: 5px 5px 0 0;
-            background-color: black;
-            z-index: 102;
-            &__name {
-                padding: 5px;
-            }
-            &__tag {
-                padding: 5px;
-            }
+        max-width: 300px;
+        max-height: 450px;
+        &-hr {
+            margin-top: 10px;
         }
-        &__body{
-            background-color: black;
-            z-index: 100;
-            padding: 10px;
-            padding-top: 15px;
-        }
-        &__footer{
-            z-index: 101;
-            border-radius: 0 0 5px 5px;
-            background-color: black;
-            align-items: center;
-            padding: 0 10px;
+        &-text {
+            margin-top: 10px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            -webkit-line-clamp: 15;
+            display: -webkit-box; /* Включаем флексбоксы */
+            -webkit-box-orient: vertical;
         }
     }
 }

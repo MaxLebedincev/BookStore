@@ -1,8 +1,8 @@
 <template>
-    <div class="tag">
+    <v-card class="tag">
         <v-icon class="tag__icon" :icon="icon" size="17px"></v-icon>
         <div class="tag__name">{{name}}</div>
-    </div>
+    </v-card>
 </template>
 
 <script>
@@ -35,9 +35,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.v-theme--dark{
+    .tag {
+        display: inline-flex;
+        border: 1px solid;
+        border-color: #000000;
+        color: #000000;
+        background-color: #ffffff;
+    }
+}
 .tag {
     display: inline-flex;
-    border: 1px solid;
     border-color: white;
     color: white;
     background-color: black;

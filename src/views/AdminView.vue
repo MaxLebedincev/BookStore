@@ -9,11 +9,11 @@
                     <v-tabs
                         v-model="tabOpt"
                         direction="vertical"
-                        color="primary"
+                        color="#dd0000"
                     >
                         <v-tab value="option-1">
                             <v-icon start>
-                                mdi-account
+                                mdi-account-plus
                             </v-icon>
                             <div class="tab-title">
                                 клиента
@@ -21,13 +21,13 @@
                         </v-tab>
                         <v-tab value="option-2">
                             <v-icon start>
-                                mdi-lock
+                                mdi-book-plus
                             </v-icon>
                             книг
                         </v-tab>
                         <v-tab value="option-3">
                             <v-icon start>
-                                mdi-access-point
+                                mdi-bookmark-plus
                             </v-icon>
                             жанра
                         </v-tab>
@@ -40,23 +40,23 @@
                     <v-tabs
                         v-model="tabOpt"
                         direction="vertical"
-                        color="primary"
+                        color="#dd0000"
                     >
                         <v-tab value="option-4">
                             <v-icon start>
-                                mdi-access-point
+                                mdi-account
                             </v-icon>
-                            пользователей
+                            клиентов
                         </v-tab>
                         <v-tab value="option-5">
                             <v-icon start>
-                                mdi-access-point
+                                mdi-book
                             </v-icon>
                             книг
                         </v-tab>
                         <v-tab value="option-6">
                             <v-icon start>
-                                mdi-access-point
+                                mdi-bookmark
                             </v-icon>
                             жанров
                         </v-tab>
@@ -68,28 +68,28 @@
                     <v-card class="info">
                         <v-window v-model="tabOpt">
                             <v-window-item value="option-1">
-                                <v-card flat>
+                                <v-card elevation="8">
                                     <template #title>
                                         Добавление пользователя
                                     </template>
                                 </v-card>
                             </v-window-item>
                             <v-window-item value="option-2">
-                                <v-card flat>
+                                <v-card elevation="4">
                                     <template #title>
                                         Добавление книги
                                     </template>
                                 </v-card>
                             </v-window-item>
                             <v-window-item value="option-3">
-                                <v-card flat>
+                                <v-card elevation="4">
                                     <template #title>
                                         Добавление жанра
                                     </template>
                                 </v-card>
                             </v-window-item>
                             <v-window-item value="option-4">
-                                <v-card class="card-table" flat>
+                                <v-card elevation="4" class="card-table">
                                     <template #title>
                                         Таблица пользователей
                                     </template>
@@ -116,7 +116,7 @@
                                 </v-card>
                             </v-window-item>
                             <v-window-item value="option-5">
-                                <v-card class="card-table" flat>
+                                <v-card elevation="4" class="card-table">
                                     <template #title>
                                         Таблица книг
                                     </template>
@@ -149,7 +149,7 @@
                                 </v-card>
                             </v-window-item>
                             <v-window-item value="option-6">
-                                <v-card class="card-table" flat>
+                                <v-card elevation="4" class="card-table">
                                     <template #title>
                                         Таблица жанров
                                     </template>
@@ -177,7 +177,7 @@
                     <v-card class="content">
                         <v-window v-model="tabOpt">
                             <v-window-item value="option-1">
-                                <v-card class="card-input" flat>
+                                <v-card elevation="4" class="card-input">
                                     <template #text>
                                         <v-text-field
                                             label="Имя"
@@ -200,7 +200,7 @@
                                 </v-card>
                             </v-window-item>
                             <v-window-item value="option-2">
-                                <v-card class="card-input" flat>
+                                <v-card elevation="4" class="card-input">
                                     <template #text>
                                         <v-text-field
                                             label="Наименование"
@@ -238,7 +238,7 @@
                                 </v-card>
                             </v-window-item>
                             <v-window-item value="option-3">
-                                <v-card class="card-input" flat>
+                                <v-card elevation="4" class="card-input">
                                     <template #text>
                                         <v-text-field
                                             label="Наименование"
@@ -261,7 +261,7 @@
                                 </v-card>
                             </v-window-item>
                             <v-window-item value="option-4">
-                                <v-card flat class="card-table">
+                                <v-card elevation="4" class="card-table">
                                     <template #text>
                                         <v-table>
                                             <tbody>
@@ -284,7 +284,7 @@
                                 </v-card>
                             </v-window-item>
                             <v-window-item value="option-5">
-                                <v-card class="card-table" flat>
+                                <v-card elevation="4" class="card-table">
                                     <template #text>
                                         <v-table>
                                             <tbody>
@@ -309,7 +309,7 @@
                                 </v-card>
                             </v-window-item>
                             <v-window-item value="option-6">
-                                <v-card class="card-table" flat>
+                                <v-card elevation="4" class="card-table">
                                     <template #text>
                                         <v-table>
                                             <tbody>

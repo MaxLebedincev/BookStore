@@ -52,8 +52,16 @@
                 <v-card
                     class="filter-card"
                     elevation="4"
-                    :text="text"
-                ></v-card>
+                >
+                    <v-checkbox
+                        class="filter-card__elem"
+                        v-for="(tag, index) in tags"
+                        :key="index"
+                        v-model="selectTag"
+                        :label="tag.name"
+                        :value="tag.id"
+                    ></v-checkbox>
+                </v-card>
             </v-col>
         </v-row>
     </v-container>
@@ -69,6 +77,29 @@ export default {
         isPopularity: true,
         page: 1,
         filterOptions: ['рейтингу', 'дате добавления'],
+        selectTag: [],
+        tags: [
+            {
+                name: "Боевик",
+                icon: "shield",
+                id: 1,
+            },
+            {
+                name: "Комедия",
+                icon: "sentiment_satisfied_alt",
+                id: 2
+            },
+            {
+                name: "Романтика",
+                icon: "favorite",
+                id: 3
+            },
+            {
+                name: "Драма",
+                icon: "favorite",
+                id: 4
+            }
+        ],
         books: [
             {
                 id: Date.now(),
@@ -76,7 +107,7 @@ export default {
                 price: 12000,
                 img: "product.jpg",
                 star: 2.56,
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
                 tags: [
                     {
                         name: "Боевик",
@@ -126,7 +157,7 @@ export default {
                 price: 12000,
                 img: "product.jpg",
                 star: 2.56,
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                description: "is aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                 tags: [
                     {
                         name: "Боевик",
@@ -146,7 +177,7 @@ export default {
                 ]
             },
         ],
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        text: 'isi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     }),
     methods: {
         getIcon(value) {
@@ -197,6 +228,11 @@ export default {
         .filter{
             height: 100%;
             &-card{
+                width: 100%;
+                &__elem {
+                    margin: 15px 15px;
+                    display: inline-flex;
+                }
             }
         }
     }

@@ -1,7 +1,9 @@
 <template>
-    <v-app-bar :elevation="2" class="px-3">
+    <v-app-bar :elevation="2" class="px-3 custom-header">
         <template #title>
-            Императорская библеотека
+            <span style="color: #FFFFFF">
+                Императорская библеотека
+            </span>
         </template>
         <template #default>
             <v-tabs
@@ -27,13 +29,13 @@
                 hide-details
                 inset
             ></v-switch>
-            <v-switch
-                v-model="isDark"
-                true-icon="mdi-weather-sunny"
+            <v-btn
+                :icon="this.theme.global.current.value.dark ? 'mdi-weather-sunny-off' : 'mdi-weather-sunny'"
                 false-icon="mdi-weather-sunny-off"
                 hide-details
                 inset
-            ></v-switch>
+                @click="toggleTheme"
+            ></v-btn>
             <v-avatar
                 class="hidden-sm-and-down"
                 color="grey-darken-1"
@@ -46,10 +48,22 @@
 </template>
 
 <script>
+import {useTheme} from "vuetify";
+
 export default {
     name: "CustomAppBar",
+    setup () {
+        const theme = useTheme()
+        theme.global.name.value = localStorage.getItem("inverse")
+        return {
+            theme,
+            toggleTheme: () => {
+                theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+                localStorage.setItem("inverse", theme.global.name.value)
+            }
+        }
+    },
     data: () => ({
-        isDark: false,
         isNotification: false,
         routes: [
             {
@@ -75,7 +89,6 @@ export default {
         ],
         activeRoute: 1,
     }),
-
 }
 </script>
 
@@ -84,5 +97,16 @@ export default {
     div {
         margin: 0px 10px;
     }
+}
+.v-theme--dark .custom-header {
+    background: rgb(255,0,0);
+    background: linear-gradient(90deg, rgba(255,0,0,1) 6%, rgba(43,43,43,1) 47%);
+}
+.custom-header {
+    background: rgb(255,0,0);
+    background: linear-gradient(90deg, rgba(255,0,0,1) 6%, rgba(43,43,43,0) 47%);
+}
+.custom-header .text-grey-darken-2 {
+    color: #dd0000 !important;
 }
 </style>

@@ -1,5 +1,5 @@
 const state = {
-    isNightTheme: false,
+    inverse: false,
 }
 
 const actions = {}
