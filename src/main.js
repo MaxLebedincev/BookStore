@@ -1,6 +1,7 @@
 import { createApp, h } from 'vue'
 import App from './App.vue'
 import router from "@/router/router";
+import "./axios";
 
 import './plugins/vuetify'
 import { loadFonts } from './plugins/webfontloader'
@@ -13,7 +14,8 @@ import {createVuetify} from "vuetify";
 export const store = createStore({
     state () {
         return {
-            inverse: false
+            inverse: false,
+            userInfo: {}
         }
     }
 })

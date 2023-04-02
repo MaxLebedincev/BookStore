@@ -1,5 +1,8 @@
 const state = {
     inverse: false,
+    role: '',
+    login: '',
+    email: ''
 }
 
 const actions = {}
