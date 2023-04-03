@@ -32,8 +32,7 @@
                 inset
             ></v-switch>
             <v-btn
-                :icon="this.theme.global.current.value.dark ? 'mdi-weather-sunny-off' : 'mdi-weather-sunny'"
-                false-icon="mdi-weather-sunny-off"
+                :icon="this.$store.state.inverse ? 'mdi-weather-sunny-off' : 'mdi-weather-sunny'"
                 hide-details
                 inset
                 @click="toggleTheme"
@@ -154,7 +153,7 @@ export default {
         password: '',
         email: '',
         role: localStorage.getItem('role'),
-        placeholderLogin: localStorage.getItem('login'),
+        placeholderLogin: '',
         routes: [
             {
                 id: 0,

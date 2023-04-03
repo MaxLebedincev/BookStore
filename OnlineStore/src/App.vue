@@ -18,7 +18,7 @@ export default {
 
     data: () => ({
     }),
-    create() {
+    mounted() {
         localStorage.setItem("inverse", 'light')
     },
     methods: {

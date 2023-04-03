@@ -1,5 +1,5 @@
 const state = {
-    inverse: false,
+    inverse: 'light',
     role: '',
     login: '',
     email: ''
