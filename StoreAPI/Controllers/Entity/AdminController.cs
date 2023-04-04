@@ -13,23 +13,13 @@ namespace StoreAPI.Controllers.Entity
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Roles = "admin")]
     public class AdminController : UserController
     {
         public AdminController(ApplicationContext context, IConfiguration conf, IHttpContextAccessor contextAccessor) : base(context, conf, contextAccessor)
         {
         }
 
-        //private SqlConnection _conn;
-        //private ApplicationContext db;
-
-        //public AdminController(ApplicationContext context, IConfiguration conf)
-        //{
-        //    _conn = new SqlConnection(conf.GetConnectionString("DefaultConnection"));
-        //    db = context;
-        //    _conn.Open();
-        //}
-
-        [Authorize(Roles = "admin")]
         [Route("getAllUser")]
         public async Task<JsonResult> GetAllUser()
         {

@@ -1,20 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using StoreAPI.Models;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Data.SqlClient;
 using StoreAPI.Data;
 using System;
-using System.Linq;
-using StoreAPI.Security;
-using Newtonsoft.Json;
-using System.Security.Cryptography;
 using StoreAPI.Services;
 using Microsoft.AspNetCore.Http;
 
@@ -92,7 +83,7 @@ namespace StoreAPI.Controllers
           return new JsonResult(person);
         }
 
-        [HttpPost("/logout")]
+        [HttpPost("/api/logout")]
         public JsonResult Logout()
         {
             Response.Cookies.Append("jwt", "", new CookieOptions()

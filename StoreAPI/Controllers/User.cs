@@ -7,14 +7,11 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
-using System;
 using Microsoft.AspNetCore.Http;
 
 namespace StoreAPI.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("api/[controller]")]
     public class UserController : Controller
     {
@@ -43,11 +40,10 @@ namespace StoreAPI.Controllers
             });
         }
 
-        [Authorize]
-        [Route("getAllCourses")]
+        [Route("getAllBooks")]
         public async Task<JsonResult> GetAllCourses()
         {
-            var courses = await _conn.QueryAsync<AllCourses>("SELECT * FROM AllCourses");
+            var courses = await _conn.QueryAsync<Books>("SELECT * FROM Books");
 
             return new JsonResult(courses);
         }
