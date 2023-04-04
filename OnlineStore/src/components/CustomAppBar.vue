@@ -153,7 +153,7 @@ export default {
         password: '',
         email: '',
         role: localStorage.getItem('role'),
-        placeholderLogin: '',
+        placeholderLogin: localStorage.getItem('login'),
         routes: [
             {
                 id: 0,

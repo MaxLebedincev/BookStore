@@ -276,6 +276,9 @@
                                                     <v-btn variant="text">
                                                         Редактировать
                                                     </v-btn>
+                                                    <v-btn variant="text">
+                                                        Удалить
+                                                    </v-btn>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -301,6 +304,9 @@
                                                     <v-btn variant="text">
                                                         Редактировать
                                                     </v-btn>
+                                                    <v-btn variant="text">
+                                                        Удалить
+                                                    </v-btn>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -322,6 +328,9 @@
                                                 <td  class="text-right">
                                                     <v-btn variant="text">
                                                         Редактировать
+                                                    </v-btn>
+                                                    <v-btn variant="text">
+                                                        Удалить
                                                     </v-btn>
                                                 </td>
                                             </tr>
