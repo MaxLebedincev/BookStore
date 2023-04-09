@@ -8,7 +8,7 @@
             width="200px"
         >
             <v-img
-                :src="getImg(modelValue.img)"
+                :src="getImg(modelValue.image)"
                 class="align-end"
                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                 height="300px"
@@ -31,9 +31,9 @@
             <template #text>
                 <div>
                     <c-tag
-                        v-for="tag in [].concat(modelValue.tags).slice(0, 3)" :key="tag.id"
+                        v-for="tag in [].concat(modelValue.listGenres).slice(0, 3)" :key="tag.id"
                         :name="tag.name"
-                        :icon="tag.icon"
+                        :icon="tag.image"
                         :inverse="false"
                     ></c-tag>
                 </div>
@@ -47,7 +47,7 @@
             <c-tag
                 v-for="tag in [].concat(modelValue.tags).slice(0, 3)" :key="tag.id"
                 :name="tag.name"
-                :icon="tag.icon"
+                :icon="tag.image"
                 :inverse="false"
             ></c-tag>
         </div>
@@ -72,7 +72,7 @@ export default {
     }),
     methods: {
         getImg(path) {
-            return require(`@/assets/image/${path}`);
+            return require(`@/assets/image/${path ?? 'product.jpg'}`);
         },
     }
 }

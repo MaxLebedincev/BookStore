@@ -239,7 +239,7 @@ export default {
 }
 .custom-header {
     background: rgb(255,0,0);
-    background: linear-gradient(90deg, rgba(255,0,0,1) 6%, rgba(43,43,43,0) 47%);
+    background: linear-gradient(90deg, rgba(255,0,0,1) 6%, rgba(255, 255, 255, 1) 47%);
 }
 .custom-header .text-grey-darken-2 {
     color: #dd0000 !important;

@@ -1,17 +1,18 @@
 import axios from "axios";
 import {ref} from 'vue';
 
-export async function UseGetBooks(upParm, filterSelect, filterCheckboxs, pageNumber) {
+export async function UseGetBooks(upParm, filterSelect, filterCheckboxs, pageNumber, name ='') {
     const data = ref([])
     const answer = ref(false)
     const fetching = async () => {
         try {
             const response = await axios.post(
-                '/user/getBooks',
+                '/user/getAllBooks',
                 {
                     isUp: upParm,
-                    filter: filterSelect,
-                    geners: filterCheckboxs,
+                    isPopular: filterSelect,
+                    name: name,
+                    genres: filterCheckboxs,
                     page: pageNumber
                 });
             data.value = response.data;
