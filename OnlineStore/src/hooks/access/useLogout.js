@@ -16,6 +16,9 @@ export async function UseLogout() {
         }
     }
     await fetching();
+    localStorage.removeItem("role")
+    localStorage.removeItem("login")
+    localStorage.removeItem("email")
     return {
         message, answer
     }

@@ -90,7 +90,7 @@ namespace StoreAPI.Controllers
 
             var books = (await _conn.QueryAsync<BookWithGenres>(query, new
             {
-                page = body.page * 12,
+                page = (body.page - 1) * 12,
                 name = body.name
             })).AsList();
             

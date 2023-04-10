@@ -85,7 +85,7 @@ export default {
         inputSearch: '',
         isPopularity: true,
         page: 1,
-        countPage: 0,
+        countPage: 1,
         filterSort: 'дате добавления',
         filterOptions: ['дате добавления', 'рейтингу'],
         selectTag: [],
@@ -106,8 +106,6 @@ export default {
         },
         async getData(upParm, filterSelect, filterCheckboxs, pageNumber, name) {
 
-            pageNumber--;
-
             if (filterSelect === 'рейтингу') {
                 filterSelect = true
             } else {
@@ -119,9 +117,15 @@ export default {
             if (answer.value) {
                 this.books = data.value.books;
                 this.countPage = data.value.countPage;
+                if (this.countPage === 0) {
+                    this.countPage = 1;
+                }
+                if (this.page > this.countPage ){
+                    this.page = this.countPage;
+                }
             } else {
                 this.books = []
-                this.countPage = 0
+                this.countPage = 1
             }
         },
         async getGenres() {
