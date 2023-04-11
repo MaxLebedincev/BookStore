@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace StoreAPI.Controllers.Entity
 {
@@ -20,16 +21,7 @@ namespace StoreAPI.Controllers.Entity
         {
         }
 
-        [Route("getAllUser")]
-        public async Task<JsonResult> GetAllUser()
-        {
-
-            var courses = await _conn.QueryAsync<MainUsers>("SELECT * FROM MainUsers");
-
-            return new JsonResult(courses);
-        }
-
-        [Authorize(Roles = "admin")]
+        
         [Route("deleteUser")]
         public JsonResult DeleteUser([FromBody] MainUsers user)
         {
@@ -50,6 +42,22 @@ namespace StoreAPI.Controllers.Entity
             }
 
             return (countRows == 0) ? new JsonResult(new { success = "Пользователь не найден!" }) : new JsonResult(new { success = "Пользователь удален!" });
+        }
+        [Route("selectUser")]
+        public async Task<JsonResult> SelectUser()
+        {
+            IEnumerable<MainUsers> courses;
+
+            try
+            {
+                courses = await _conn.QueryAsync<MainUsers>("SELECT * FROM MainUsers");
+            }
+            catch (Exception)
+            {
+                return new JsonResult(new { error = "Произошла ошибка!" });
+            }
+
+            return new JsonResult(courses);
         }
     }
 }

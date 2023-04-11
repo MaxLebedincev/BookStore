@@ -22,63 +22,77 @@ namespace StoreAPI.Controllers.Entity
         }
 
         [Route("deleteBook")]
-        public JsonResult DeleteBook([FromBody] Books book)
+        public async Task<JsonResult> DeleteBookAsync([FromBody] Books book)
         {
             int countRows = 0;
 
             try
             {
-                SqlCommand command = new SqlCommand(@"DELETE [dbo].[Books] WHERE id = @id", _conn);
-
-                command.Parameters.AddWithValue("@id", book.id);
-
-                countRows = command.ExecuteNonQuery();
+                countRows = await _conn.ExecuteAsync(@"DELETE [dbo].[Books] WHERE id = @id", new
+                {
+                    book.id
+                });
             }
             catch (Exception)
             {
                 return new JsonResult(new { error = "Произошла ошибка!" });
             }
 
-            return (countRows == 0) ? new JsonResult(new { success = "Кннига не найдена!" }) : new JsonResult(new { success = "Книга удалена!" });
+            return (countRows == 0) ? new JsonResult(new { success = "Книга не удалена!" }) : new JsonResult(new { success = "Книга удалена!" });
         }
-
         [Route("insertBook")]
-        public JsonResult InsertBook([FromBody] Books book)
+        public async Task<JsonResult> InsertBookAsync([FromBody] Books book)
         {
+            int countRows = 0;
 
             try
             {
-                SqlCommand command = new SqlCommand(@"INSERT INTO [dbo].[Books]  (name, price, author, description, image, popular) VALUES  (@name, @price, @author, @description, @image, @popular)", _conn);
-
-                command.Parameters.AddWithValue("@name", book.name);
-                command.Parameters.AddWithValue("@price", book.price);
-                command.Parameters.AddWithValue("@author", book.author);
-                command.Parameters.AddWithValue("@description", book.description);
-                command.Parameters.AddWithValue("@image", book.image);
-                command.Parameters.AddWithValue("@popular", book.popular);
-
-                command.ExecuteReader();
+                countRows = await _conn.ExecuteAsync(@"INSERT INTO [dbo].[Books]  (name, price, author, description, image, popular) VALUES  (@name, @price, @author, @description, @image, @popular)", new
+                {
+                    book.name,
+                    book.price,
+                    book.author,
+                    book.description,
+                    book.image,
+                    book.popular
+                });
             }
             catch (Exception)
             {
                 return new JsonResult(new { error = "Произошла ошибка!" });
             }
 
-            return new JsonResult(new { success = "Книга добавлена!" });
+            return (countRows == 0) ? new JsonResult(new { success = "Книга не добавлена!" }) : new JsonResult(new { success = "Книга добавлена!" });
         }
+        [Route("selectBooks")]
+        public async Task<JsonResult> SelectBooksAsync()
+        {
+            IEnumerable<Books> courses;
+
+            try
+            {
+                courses = await _conn.QueryAsync<Books>("SELECT * FROM Books ORDER BY id");
+            }
+            catch (Exception)
+            {
+                return new JsonResult(new { error = "Произошла ошибка!" });
+            }
+
+            return new JsonResult(courses);
+        }
+
 
         [Route("deleteGenre")]
-        public JsonResult DeleteGenre([FromBody] Genres genre)
+        public async Task<JsonResult> DeleteGenreAsync([FromBody] Genres genre)
         {
             int countRows = 0;
 
             try
             {
-                SqlCommand command = new SqlCommand(@"DELETE [dbo].[Genres] WHERE id = @id", _conn);
-
-                command.Parameters.AddWithValue("@id", genre.id);
-
-                countRows = command.ExecuteNonQuery();
+                countRows = await _conn.ExecuteAsync(@"DELETE [dbo].[Genres] WHERE id = @id", new
+                {
+                    genre.id
+                });
             }
             catch (Exception)
             {
@@ -87,26 +101,41 @@ namespace StoreAPI.Controllers.Entity
 
             return (countRows == 0) ? new JsonResult(new { success = "Жанр не найден!" }) : new JsonResult(new { success = "Жанр удален!" });
         }
-
         [Route("insertGenre")]
-        public JsonResult InsertGenre([FromBody] Genres genre)
+        public async Task<JsonResult> InsertGenreAsync([FromBody] Genres genre)
         {
-
+            int countRows = 0;
+            
             try
             {
-                SqlCommand command = new SqlCommand(@"INSERT INTO [dbo].[Books]  (name, image) VALUES (@name, @image)", _conn);
-
-                command.Parameters.AddWithValue("@name", genre.name);
-                command.Parameters.AddWithValue("@image", genre.image);
-
-                command.ExecuteReader();
+                countRows = await _conn.ExecuteAsync(@"INSERT INTO [dbo].[Books]  (name, image) VALUES (@name, @image)", new
+                {
+                    genre.name,
+                    genre.image
+                });
             }
             catch (Exception)
             {
                 return new JsonResult(new { error = "Произошла ошибка!" });
             }
 
-            return new JsonResult(new { success = "Жанр добавлен!" });
+            return (countRows == 0) ? new JsonResult(new { success = "Жанр не добавлен!" }) : new JsonResult(new { success = "Жанр добавлена!" });
+        }
+        [Route("selectGenres")]
+        public async Task<JsonResult> SelectGenresAsync()
+        {
+            IEnumerable<Genres> courses;
+
+            try
+            {
+                courses = await _conn.QueryAsync<Genres>("SELECT * FROM Genres ORDER BY id");
+            }
+            catch (Exception)
+            {
+                return new JsonResult(new { error = "Произошла ошибка!" });
+            }
+
+            return new JsonResult(courses);
         }
     }
 }

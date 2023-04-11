@@ -44,7 +44,7 @@ namespace StoreAPI.Controllers
             });
         }
 
-        [Route("getAllBooks")]
+        [Route("getBooks")]
         public async Task<JsonResult> GetAllBooks([FromBody] AllBooks body)
         {
             string genreStr = " AND g.id IN (";

@@ -7,7 +7,7 @@ export async function UseGetBooks(upParm, filterSelect, filterCheckboxs, pageNum
     const fetching = async () => {
         try {
             const response = await axios.post(
-                '/user/getAllBooks',
+                '/user/getBooks',
                 {
                     isUp: upParm,
                     isPopular: filterSelect,

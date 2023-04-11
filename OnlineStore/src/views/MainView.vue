@@ -76,7 +76,7 @@
 <script>
 import CustomCard from "@/components/CustomCard";
 import {UseGetBooks} from "@/hooks/data/get/useGetBooks";
-import {UseGetGenres} from "@/hooks/data/get/getGenres";
+import {UseGetGenres} from "@/hooks/data/get/useGetGenres";
 
 export default {
     name: "MainView",
