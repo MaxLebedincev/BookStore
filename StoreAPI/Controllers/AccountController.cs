@@ -42,7 +42,7 @@ namespace StoreAPI.Controllers
                 });
             }
             
-            return new JsonResult(new { errorText = "Почта или Логин уже используются." });
+            return new JsonResult(new { error = "Почта или Логин уже используются." });
         }
 
         [HttpPost("/api/token")]

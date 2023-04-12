@@ -1,13 +1,15 @@
 import axios from "axios";
 import {ref} from 'vue';
 
-export async function UseSelectGenres() {
-    const data = ref([])
+export async function UseDeleteGenre(id) {
+    const message = ref([])
     const answer = ref(false)
     const fetching = async () => {
         try {
-            const response = await axios.post('/moderator/selectGenres');
-            data.value = response.data;
+            const response = await axios.post('/moderator/deleteGenre', {
+                id: id
+            });
+            message.value = response.data.error ?? response.data.success;
             answer.value = true;
         } catch (e) {
             answer.value = false;
@@ -15,6 +17,6 @@ export async function UseSelectGenres() {
     }
     await fetching();
     return {
-        data, answer
+        message, answer
     }
 }

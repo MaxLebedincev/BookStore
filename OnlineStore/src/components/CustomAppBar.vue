@@ -78,31 +78,37 @@ export default {
                 id: 0,
                 link: '/about',
                 name: 'О нас',
-                role: ['admin', 'moder', 'client', '']
+                role: ['admin', 'moderator', 'client', '']
             },
             {
                 id: 1,
                 link: '/',
                 name: 'Товары',
-                role: ['admin', 'moder', 'client', '']
+                role: ['admin', 'moderator', 'client', '']
             },
             {
                 id: 2,
                 link: '/admin',
                 name: 'Админ панель',
-                role: ['admin', 'moder']
+                role: ['admin', 'moderator']
             },
             {
                 id: 3,
                 link: '/home',
                 name: 'Личный кабинет',
-                role: ['admin', 'moder', 'client']
+                role: ['admin', 'moderator', 'client']
             }
         ],
         activeRoute: 1,
     }),
     methods: {
         updateRole(role){
+
+            if (!this.routes[this.activeRoute].role.includes(role)) {
+                this.activeRoute = 1;
+                this.$router.push('/');
+            }
+
             this.role = role;
         }
     }

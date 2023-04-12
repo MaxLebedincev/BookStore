@@ -158,6 +158,7 @@ export default {
             },
         ],
         isAlert: false,
+        alert: ''
     }),
     mounted() {
         const name = localStorage.getItem("login");
@@ -183,12 +184,11 @@ export default {
             this.getRole('')
         },
         async register() {
-            let {userinfo, answer} = await UseRegistration(this.login, this.password, this.email);
+            let {userinfo, answer} = await UseRegistration(this.login, this.password, this.email, this.roleSelect);
             if (answer.value) {
-                this.clearPersonInfo()
-                this.placeholderLogin = userinfo.value.login === undefined ? null : userinfo.value.login;
-                this.getRole(userinfo.value.role)
+                await this.auth();
             } else {
+                this.alert = userinfo.value;
                 this.placeholderLogin = null;
                 this.isAlert = true;
                 this.getRole('');

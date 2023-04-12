@@ -2,12 +2,12 @@ import axios from "axios";
 import {ref} from 'vue';
 
 export async function UseSelectUser() {
-    const users = ref([])
+    const data = ref([])
     const answer = ref(false)
     const fetching = async () => {
         try {
             const response = await axios.post('/admin/selectUser');
-            users.value = response.data;
+            data.value = response.data;
             answer.value = true;
         } catch (e) {
             answer.value = false;
@@ -15,6 +15,6 @@ export async function UseSelectUser() {
     }
     await fetching();
     return {
-        users, answer
+        data, answer
     }
 }

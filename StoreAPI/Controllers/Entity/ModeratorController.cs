@@ -137,5 +137,26 @@ namespace StoreAPI.Controllers.Entity
 
             return new JsonResult(courses);
         }
+        [Route("updateGenre")]
+        public async Task<JsonResult> UpdateGenreAsync([FromBody] Genres genre)
+        {
+            int countRows = 0;
+
+            try
+            {
+                countRows = await _conn.ExecuteAsync("UPDATE Genres SET name = @name, image = @image WHERE id = @id", new
+                {
+                    name = genre.name,
+                    image = genre.image,
+                    id = genre.id
+                });
+            }
+            catch (Exception)
+            {
+                return new JsonResult(new { error = "Произошла ошибка!" });
+            }
+
+            return (countRows == 0) ? new JsonResult(new { success = "Жанр не найден!" }) : new JsonResult(new { success = "Жанр изменен!" });
+        }
     }
 }

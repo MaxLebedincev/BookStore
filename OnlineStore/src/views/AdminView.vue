@@ -11,7 +11,10 @@
                         direction="vertical"
                         color="#dd0000"
                     >
-                        <v-tab value="option-1">
+                        <v-tab
+                            v-if="role === 'admin'"
+                            value="option-1"
+                        >
                             <v-icon start>
                                 mdi-account-plus
                             </v-icon>
@@ -19,7 +22,10 @@
                                 клиента
                             </div>
                         </v-tab>
-                        <v-tab value="option-2">
+                        <v-tab
+                            value="option-2"
+                            @click="getBooks"
+                        >
                             <v-icon start>
                                 mdi-book-plus
                             </v-icon>
@@ -42,7 +48,7 @@
                         direction="vertical"
                         color="#dd0000"
                     >
-                        <v-tab value="option-4">
+                        <v-tab v-if="role === 'admin'" value="option-4">
                             <v-icon start>
                                 mdi-account
                             </v-icon>
@@ -176,7 +182,7 @@
                     </v-card>
                     <v-card class="content">
                         <v-window v-model="tabOpt">
-                            <v-window-item value="option-1">
+                            <v-window-item v-if="role === 'admin'" value="option-1">
                                 <v-card elevation="4" class="card-input">
                                     <template #text>
                                         <v-text-field
@@ -260,7 +266,7 @@
                                     </template>
                                 </v-card>
                             </v-window-item>
-                            <v-window-item value="option-4">
+                            <v-window-item v-if="role === 'admin'" value="option-4">
                                 <v-card elevation="4" class="card-table">
                                     <template #text>
                                         <v-table>
@@ -348,6 +354,9 @@
 </template>
 
 <script>
+import {UseSelectBooks} from "@/hooks/data/get/useSelectBooks";
+import {UseSelectGenres} from "@/hooks/data/get/useSelectGenres";
+
 export default {
     name: "AdminView",
     data: ()=> ({
@@ -430,7 +439,24 @@ export default {
                 calories: 518,
             },
         ],
-    })
+        books: [],
+        genres: [],
+        role: localStorage.getItem('role') ?? '',
+    }),
+    methods: {
+        async getBooks() {
+            let {data, answer} = await UseSelectBooks();
+            if (answer.value) {
+                this.books = data.value;
+            }
+        },
+        async getGeres() {
+            let {data, answer} = await UseSelectGenres();
+            if (answer.value) {
+                this.genres = data.value;
+            }
+        }
+    }
 }
 </script>
 
