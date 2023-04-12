@@ -99,8 +99,14 @@ export default {
                 role: ['admin', 'moderator', 'client']
             }
         ],
-        activeRoute: 1,
+        activeRoute: Number(localStorage.getItem('activeRoute')) ?? 1,
     }),
+    watch: {
+        activeRoute(active) {
+            localStorage.setItem('activeRoute', active)
+            this.activeRoute = active
+        }
+    },
     methods: {
         updateRole(role){
 

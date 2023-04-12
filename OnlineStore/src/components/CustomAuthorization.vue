@@ -123,6 +123,7 @@
 import {UseAuthorization} from "@/hooks/access/useAuthorization";
 import {UseLogout} from "@/hooks/access/useLogout";
 import {UseRegistration} from "@/hooks/access/useRegistration";
+import setAuthHeader from "@/utils/setAuthHeader";
 
 export default {
     name: "CustomAuthorization",
@@ -168,6 +169,7 @@ export default {
         async auth() {
             let {userinfo, answer} = await UseAuthorization(this.login, this.password);
             if (answer.value) {
+                setAuthHeader(this.$cookie.getCookie('jwt'))
                 this.clearPersonInfo();
                 this.placeholderLogin = userinfo.value.login;
                 this.getRole(userinfo.value.role)

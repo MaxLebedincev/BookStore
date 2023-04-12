@@ -13,7 +13,7 @@ export async function UseInsertBook(name, price, author, description, image, pop
                 description: description,
                 image: image,
                 popular: popular
-            });
+            }, {Authorization: `Bearer ${document.cookie.split('=')[1]}`});
             message.value = response.data.error ?? response.data.success;
             answer.value = true;
         } catch (e) {

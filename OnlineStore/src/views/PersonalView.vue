@@ -15,7 +15,7 @@
                         <v-avatar
                             class="user-avatar"
                             color="grey-darken-1"
-                            size="200px"
+                            size="100px"
                         ></v-avatar>
                     </template>
                 </v-card>
@@ -28,11 +28,12 @@
                     <template #text>
                         <div class="description">
                             <ul>
+                                <li>Ваш login: {{profileName}}</li>
                                 <li>Ваш e-mail: {{profileEmail}}</li>
-                                <li>Способ оплаты: {{profileEmail}}</li>
+                                <li>Ваша роль: {{profileRole}}</li>
                             </ul>
                             <div class="description-text">
-                                {{text}}
+
                             </div>
                         </div>
                     </template>
@@ -46,11 +47,27 @@
 export default {
     name: "PersonalView",
     data: () => ({
-        profileName: 'User',
-        profileEmail: 'test@mail.ru',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n' +
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n',
-    })
+        profileName: localStorage.getItem('login') ?? 'User',
+        profileEmail: localStorage.getItem('email') ?? 'test@mail.ru',
+        profileRole: ''
+    }),
+    mounted() {
+        const role = localStorage.getItem('role') ?? ''
+        this.profileRole = this.selectRole(role);
+    },
+    methods: {
+        selectRole(role) {
+            switch (role) {
+                case 'admin':
+                    return 'Админ'
+                case 'client':
+                    return 'Клиент'
+                case 'moderator':
+                    return 'Модератор'
+            }
+            return ''
+        },
+    }
 }
 </script>
 

@@ -12,7 +12,7 @@ export async function UseUpdateUser(login, password, email, role, id) {
                 email: email,
                 role: role,
                 id: id
-            });
+            }, {Authorization: `Bearer ${document.cookie.split('=')[1]}`});
             message.value = response.data.error ?? response.data.success;
             answer.value = true;
         } catch (e) {

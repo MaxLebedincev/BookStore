@@ -9,7 +9,7 @@ export async function UseDeleteUser(id, role) {
             const response = await axios.post('/admin/deleteUser', {
                 id: id,
                 role: role
-            });
+            }, {Authorization: `Bearer ${document.cookie.split('=')[1]}`});
             message.value = response.data.error ?? response.data.success;
             answer.value = true;
         } catch (e) {

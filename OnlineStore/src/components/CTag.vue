@@ -1,6 +1,6 @@
 <template>
     <v-card class="tag">
-        <v-icon class="tag__icon" :icon="icon" size="17px"></v-icon>
+        <v-icon v-if="icon" class="tag__icon" :icon="icon" size="17px"></v-icon>
         <div class="tag__name">{{name}}</div>
     </v-card>
 </template>

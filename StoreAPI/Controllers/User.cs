@@ -146,5 +146,39 @@ namespace StoreAPI.Controllers
 
             return new JsonResult(courses);
         }
+        [Route("getBook")]
+        public async Task<JsonResult> GetBook([FromBody] Books body)
+        {
+            var courses = await _conn.QueryFirstAsync<BookWithGenres>(
+            @$"SELECT TOP (1000) b.*, (SELECT g.id, g.name, g.image
+		        FROM Books_Genres as bg
+		        INNER JOIN Genres as g ON bg.idGenre = g.id 
+		        WHERE bg.idBook = b.id 
+		        FOR XML PATH ('genre'), ROOT ('data')) as genres
+            FROM [OnlineStore].[dbo].[Books] b
+            WHERE b.id = @id", new
+            {
+                id = body.id
+            });
+
+            XmlDocument xml = new XmlDocument();
+            xml.LoadXml(courses.genres);
+
+            courses.listGenres = new List<Genres>();
+
+            foreach (XmlNode elem in xml.SelectSingleNode("data").ChildNodes)
+            {
+                courses.listGenres.Add(new Genres()
+                {
+                    id = int.Parse(elem.SelectSingleNode("id").InnerText),
+                    name = elem.SelectSingleNode("name").InnerText,
+                    image = elem.SelectSingleNode("image") == null ? "" : elem.SelectSingleNode("image").InnerText,
+                });
+            }
+
+            courses.genres = "";
+
+            return new JsonResult(courses);
+        }
     }
 }

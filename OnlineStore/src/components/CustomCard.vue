@@ -17,8 +17,13 @@
                 <v-card-actions class="card-footer">
                     <div class="card-title">{{modelValue.name}}</div>
                     <div style="display: flex; justify-content: flex-end">
-                        <v-btn size="small" color="#dd0000" variant="text" icon="mdi-heart"></v-btn>
-                        <v-btn size="small" color="#dd0000" variant="text" icon="mdi-bookmark"></v-btn>
+                        <v-btn
+                            size="small"
+                            color="#dd0000"
+                            variant="text"
+                            icon="mdi-cart-outline"
+                            @click="$router.push(`/product/${modelValue.id}`)"
+                        ></v-btn>
                     </div>
                 </v-card-actions>
             </v-img>
@@ -73,10 +78,11 @@ export default {
     methods: {
         getImg(path) {
             return require(`@/assets/image/${path ?? 'product.jpg'}`);
-        },
+        }
     }
 }
 </script>
+
 
 <style lang="scss" scoped>
 .v-theme--dark{
@@ -100,8 +106,11 @@ export default {
         }
         &-title{
             opacity: 1;
-            width: 100px;
-            color: #000000
+            width: 200px;
+            color: #000000;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
     }
     .popup {
@@ -111,6 +120,11 @@ export default {
         z-index: 100;
         max-width: 300px;
         max-height: 450px;
+        h3 {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
         &-hr {
             margin-top: 10px;
         }

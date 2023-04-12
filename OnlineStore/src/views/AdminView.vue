@@ -24,7 +24,6 @@
                         </v-tab>
                         <v-tab
                             value="option-2"
-                            @click="getBooks"
                         >
                             <v-icon start>
                                 mdi-book-plus
@@ -48,19 +47,29 @@
                         direction="vertical"
                         color="#dd0000"
                     >
-                        <v-tab v-if="role === 'admin'" value="option-4">
+                        <v-tab
+                            v-if="role === 'admin'"
+                            value="option-4"
+                            @click="getUsers()"
+                        >
                             <v-icon start>
                                 mdi-account
                             </v-icon>
                             клиентов
                         </v-tab>
-                        <v-tab value="option-5">
+                        <v-tab
+                            value="option-5"
+                            @click="getBooks()"
+                        >
                             <v-icon start>
                                 mdi-book
                             </v-icon>
                             книг
                         </v-tab>
-                        <v-tab value="option-6">
+                        <v-tab
+                            value="option-6"
+                            @click="getGenres()"
+                        >
                             <v-icon start>
                                 mdi-bookmark
                             </v-icon>
@@ -73,7 +82,7 @@
                 <div>
                     <v-card class="info">
                         <v-window v-model="tabOpt">
-                            <v-window-item value="option-1">
+                            <v-window-item v-if="role === 'admin'" value="option-1">
                                 <v-card elevation="8">
                                     <template #title>
                                         Добавление пользователя
@@ -94,27 +103,34 @@
                                     </template>
                                 </v-card>
                             </v-window-item>
-                            <v-window-item value="option-4">
+                            <v-window-item v-if="role === 'admin'" value="option-4">
                                 <v-card elevation="4" class="card-table">
                                     <template #title>
                                         Таблица пользователей
                                     </template>
                                     <template #text>
-                                        <v-table>
+                                        <v-table style="text-align: center">
                                             <thead>
                                             <tr>
-                                                <th>
-                                                    Имя
-                                                </th>
-                                                <th>
-                                                    Пароль
-                                                </th>
-                                                <th>
+                                                <td width="20%">
+                                                    Логин
+                                                </td>
+                                                <td width="20%">
+                                                    Почта
+                                                </td>
+                                                <td width="20%">
+                                                    Роль
+                                                </td>
+                                                <td width="10%">
                                                     Дата добавления
-                                                </th>
-                                                <th
+                                                </td>
+                                                <td width="10%">
+                                                    Дата обновления
+                                                </td>
+                                                <td
+                                                    width="20%"
                                                     class="text-right"
-                                                ></th>
+                                                ></td>
                                             </tr>
                                             </thead>
                                         </v-table>
@@ -129,25 +145,26 @@
                                     <template #text>
                                         <v-table>
                                             <thead>
-                                            <tr>
-                                                <th>
+                                            <tr style="padding: 0 1rem; display: table; text-align: center">
+                                                <td width="25%">
                                                     Имя
-                                                </th>
-                                                <th>
+                                                </td>
+                                                <td width="15%">
                                                     Цена
-                                                </th>
-                                                <th>
+                                                </td>
+                                                <td width="25%">
                                                     Автор
-                                                </th>
-                                                <th>
-                                                    Описания
-                                                </th>
-                                                <th>
+                                                </td>
+                                                <td width="10%">
                                                     Дата добавления
-                                                </th>
-                                                <th
+                                                </td>
+                                                <td width="5%">
+                                                    Оценка
+                                                </td>
+                                                <td
+                                                    width="20%"
                                                     class="text-right"
-                                                ></th>
+                                                ></td>
                                             </tr>
                                             </thead>
                                         </v-table>
@@ -160,18 +177,19 @@
                                         Таблица жанров
                                     </template>
                                     <template #text>
-                                        <v-table>
+                                        <v-table style="text-align: center">
                                             <thead>
                                             <tr>
-                                                <th>
+                                                <td width="40%">
                                                     Имя
-                                                </th>
-                                                <th>
+                                                </td>
+                                                <td width="40%">
                                                     Картинка
-                                                </th>
-                                                <th
+                                                </td>
+                                                <td
+                                                    width="20%"
                                                     class="text-right"
-                                                ></th>
+                                                ></td>
                                             </tr>
                                             </thead>
                                         </v-table>
@@ -199,7 +217,7 @@
                                         ></v-text-field>
                                     </template>
                                     <template #actions>
-                                        <v-btn variant="outlined" class="card-button">
+                                        <v-btn width="170px" variant="outlined" class="card-button" @click="createAlert">
                                             Добавить
                                         </v-btn>
                                     </template>
@@ -237,7 +255,7 @@
                                         ></v-file-input>
                                     </template>
                                     <template #actions>
-                                        <v-btn variant="outlined" class="card-button">
+                                        <v-btn width="170px" variant="outlined" class="card-button" @click="createAlert">
                                             Добавить
                                         </v-btn>
                                     </template>
@@ -260,7 +278,7 @@
                                         ></v-select>
                                     </template>
                                     <template #actions>
-                                        <v-btn variant="outlined" class="card-button">
+                                        <v-btn width="170px" variant="outlined" class="card-button" @click="createAlert">
                                             Добавить
                                         </v-btn>
                                     </template>
@@ -269,20 +287,22 @@
                             <v-window-item v-if="role === 'admin'" value="option-4">
                                 <v-card elevation="4" class="card-table">
                                     <template #text>
-                                        <v-table>
+                                        <v-table style="text-align: center">
                                             <tbody>
                                             <tr
-                                                v-for="item in desserts"
-                                                :key="item.name"
+                                                v-for="item in users"
+                                                :key="item.id"
                                             >
-                                                <td>{{ item.name }}</td>
-                                                <td>{{ item.calories }}</td>
-                                                <td>{{ item.calories }}</td>
-                                                <td  class="text-right">
-                                                    <v-btn variant="text">
+                                                <td width="20%">{{ item.login }}</td>
+                                                <td width="20%">{{ item.email }}</td>
+                                                <td width="20%">{{ selectRole(item.role) }}</td>
+                                                <td width="10%">{{ dateConvert(item.registerDate) }}</td>
+                                                <td width="10%">{{ dateConvert(item.updateDate) }}</td>
+                                                <td width="20%" class="text-right">
+                                                    <v-btn width="170px" variant="text" @click="createAlert">
                                                         Редактировать
                                                     </v-btn>
-                                                    <v-btn variant="text">
+                                                    <v-btn width="170px" variant="text" @click="createAlert">
                                                         Удалить
                                                     </v-btn>
                                                 </td>
@@ -295,22 +315,22 @@
                             <v-window-item value="option-5">
                                 <v-card elevation="4" class="card-table">
                                     <template #text>
-                                        <v-table>
+                                        <v-table style="text-align: center">
                                             <tbody>
                                             <tr
-                                                v-for="item in desserts"
-                                                :key="item.name"
+                                                v-for="item in books"
+                                                :key="item.id"
                                             >
-                                                <td>{{ item.name }}</td>
-                                                <td>{{ item.calories }}</td>
-                                                <td>{{ item.name }}</td>
-                                                <td>{{ item.name }}</td>
-                                                <td>{{ item.name }}</td>
-                                                <td  class="text-right">
-                                                    <v-btn variant="text">
+                                                <td width="25%">{{ item.name }}</td>
+                                                <td width="15%">{{ item.price }}</td>
+                                                <td width="25%">{{ item.author }}</td>
+                                                <td width="10%">{{ dateConvert(item.date) }}</td>
+                                                <td width="5%">{{ item.popular }}</td>
+                                                <td width="20%" class="text-right">
+                                                    <v-btn width="170px" variant="text" @click="createAlert">
                                                         Редактировать
                                                     </v-btn>
-                                                    <v-btn variant="text">
+                                                    <v-btn width="170px" variant="text" @click="createAlert">
                                                         Удалить
                                                     </v-btn>
                                                 </td>
@@ -323,19 +343,19 @@
                             <v-window-item value="option-6">
                                 <v-card elevation="4" class="card-table">
                                     <template #text>
-                                        <v-table>
+                                        <v-table style="text-align: center">
                                             <tbody>
                                             <tr
-                                                v-for="item in desserts"
-                                                :key="item.name"
+                                                v-for="item in genres"
+                                                :key="item.id"
                                             >
-                                                <td>{{ item.name }}</td>
-                                                <td>{{ item.name }}</td>
-                                                <td  class="text-right">
-                                                    <v-btn variant="text">
+                                                <td width="40%">{{ item.name }}</td>
+                                                <td width="40%">{{ item.image ?? '' }}</td>
+                                                <td width="20%" class="text-right">
+                                                    <v-btn width="170px" variant="text" @click="createAlert">
                                                         Редактировать
                                                     </v-btn>
-                                                    <v-btn variant="text">
+                                                    <v-btn width="170px" variant="text" @click="createAlert">
                                                         Удалить
                                                     </v-btn>
                                                 </td>
@@ -351,98 +371,41 @@
             </v-col>
         </v-row>
     </v-container>
+    <v-dialog
+        :model-value="alert"
+        width="auto"
+    >
+        <v-card>
+            <v-card-text>
+                Функциоал находится в разработке!
+            </v-card-text>
+            <v-card-actions>
+                <v-btn color="#dd0000" block @click="alert = false">Закрыть</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
 </template>
 
 <script>
+import moment from 'moment';
 import {UseSelectBooks} from "@/hooks/data/get/useSelectBooks";
 import {UseSelectGenres} from "@/hooks/data/get/useSelectGenres";
+import {UseSelectUser} from "@/hooks/data/get/useSelectUser";
 
 export default {
     name: "AdminView",
     data: ()=> ({
-        tabOpt: 'option-1',
+        tabOpt: 'option-2',
         favorites: [],
-        states: [
-            'Alabama', 'Alaska', 'American Samoa', 'Arizona',
-            'Arkansas', 'California', 'Colorado', 'Connecticut',
-            'Delaware', 'District of Columbia', 'Federated States of Micronesia',
-            'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho',
-            'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
-            'Louisiana', 'Maine', 'Marshall Islands', 'Maryland',
-            'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
-            'Missouri', 'Montana', 'Nebraska', 'Nevada',
-            'New Hampshire', 'New Jersey', 'New Mexico', 'New York',
-            'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio',
-            'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico',
-            'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee',
-            'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia',
-            'Washington', 'West Virginia', 'Wisconsin', 'Wyoming',
-        ],
-        desserts: [
-            {
-                name: 'Frozen Yogurt',
-                calories: 159,
-            },
-            {
-                name: 'Frozen Yogurt',
-                calories: 159,
-            },
-            {
-                name: 'Frozen Yogurt',
-                calories: 159,
-            },
-            {
-                name: 'Frozen Yogurt',
-                calories: 159,
-            },{
-                name: 'Frozen Yogurt',
-                calories: 159,
-            },
-            {
-                name: 'Frozen Yogurt',
-                calories: 159,
-            },
-            {
-                name: 'Ice cream sandwich',
-                calories: 237,
-            },
-            {
-                name: 'Eclair',
-                calories: 262,
-            },
-            {
-                name: 'Cupcake',
-                calories: 305,
-            },
-            {
-                name: 'Gingerbread',
-                calories: 356,
-            },
-            {
-                name: 'Jelly bean',
-                calories: 375,
-            },
-            {
-                name: 'Lollipop',
-                calories: 392,
-            },
-            {
-                name: 'Honeycomb',
-                calories: 408,
-            },
-            {
-                name: 'Donut',
-                calories: 452,
-            },
-            {
-                name: 'KitKat',
-                calories: 518,
-            },
-        ],
         books: [],
         genres: [],
+        users: [],
         role: localStorage.getItem('role') ?? '',
+        alert: false
     }),
+    mounted() {
+        this.tabOpt = 'option-2'
+    },
     methods: {
         async getBooks() {
             let {data, answer} = await UseSelectBooks();
@@ -450,11 +413,33 @@ export default {
                 this.books = data.value;
             }
         },
-        async getGeres() {
+        async getGenres() {
             let {data, answer} = await UseSelectGenres();
             if (answer.value) {
                 this.genres = data.value;
             }
+        },
+        async getUsers() {
+            let {data, answer} = await UseSelectUser();
+            if (answer.value) {
+                this.users = data.value;
+            }
+        },
+        dateConvert(date) {
+            return moment(date).format("YYYY-MM-DD")
+        },
+        selectRole(role) {
+            switch (role) {
+                case 'admin':
+                    return 'Админ'
+                case 'client':
+                    return 'Клиент'
+                case 'moderator':
+                    return 'Модератор'
+            }
+        },
+        createAlert(){
+            this.alert = true;
         }
     }
 }

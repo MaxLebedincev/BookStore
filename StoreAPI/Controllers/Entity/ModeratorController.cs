@@ -14,13 +14,12 @@ namespace StoreAPI.Controllers.Entity
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Roles = "admin,moderator")]
     public class ModeratorController : UserController
     {
         public ModeratorController(ApplicationContext context, IConfiguration conf, IHttpContextAccessor contextAccessor) : base(context, conf, contextAccessor)
         {
         }
-
+        [Authorize(Roles = "admin,moderator")]
         [Route("deleteBook")]
         public async Task<JsonResult> DeleteBookAsync([FromBody] Books book)
         {
@@ -40,6 +39,7 @@ namespace StoreAPI.Controllers.Entity
 
             return (countRows == 0) ? new JsonResult(new { success = "Книга не удалена!" }) : new JsonResult(new { success = "Книга удалена!" });
         }
+        [Authorize(Roles = "admin,moderator")]
         [Route("insertBook")]
         public async Task<JsonResult> InsertBookAsync([FromBody] Books book)
         {
@@ -64,6 +64,7 @@ namespace StoreAPI.Controllers.Entity
 
             return (countRows == 0) ? new JsonResult(new { success = "Книга не добавлена!" }) : new JsonResult(new { success = "Книга добавлена!" });
         }
+        [Authorize(Roles = "admin")]
         [Route("selectBooks")]
         public async Task<JsonResult> SelectBooksAsync()
         {
@@ -81,7 +82,7 @@ namespace StoreAPI.Controllers.Entity
             return new JsonResult(courses);
         }
 
-
+        [Authorize(Roles = "admin,moderator")]
         [Route("deleteGenre")]
         public async Task<JsonResult> DeleteGenreAsync([FromBody] Genres genre)
         {
@@ -101,6 +102,7 @@ namespace StoreAPI.Controllers.Entity
 
             return (countRows == 0) ? new JsonResult(new { success = "Жанр не найден!" }) : new JsonResult(new { success = "Жанр удален!" });
         }
+        [Authorize(Roles = "admin,moderator")]
         [Route("insertGenre")]
         public async Task<JsonResult> InsertGenreAsync([FromBody] Genres genre)
         {
@@ -121,6 +123,7 @@ namespace StoreAPI.Controllers.Entity
 
             return (countRows == 0) ? new JsonResult(new { success = "Жанр не добавлен!" }) : new JsonResult(new { success = "Жанр добавлена!" });
         }
+        [Authorize(Roles = "admin,moderator")]
         [Route("selectGenres")]
         public async Task<JsonResult> SelectGenresAsync()
         {
@@ -137,6 +140,7 @@ namespace StoreAPI.Controllers.Entity
 
             return new JsonResult(courses);
         }
+        [Authorize(Roles = "admin,moderator")]
         [Route("updateGenre")]
         public async Task<JsonResult> UpdateGenreAsync([FromBody] Genres genre)
         {

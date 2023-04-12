@@ -3,6 +3,7 @@ import {createRouter, createWebHistory} from "vue-router"
 import PersonalView from "@/views/PersonalView";
 import AboutView from "@/views/AboutView";
 import AdminView from "@/views/AdminView";
+import ProductView from "@/views/ProductView";
 
 const routes = [
     {
@@ -20,6 +21,10 @@ const routes = [
     {
         path:'/admin',
         component: AdminView
+    },
+    {
+        path:'/product/:id',
+        component: ProductView
     }
 ]
 

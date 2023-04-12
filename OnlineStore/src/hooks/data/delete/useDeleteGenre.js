@@ -8,7 +8,7 @@ export async function UseDeleteGenre(id) {
         try {
             const response = await axios.post('/moderator/deleteGenre', {
                 id: id
-            });
+            }, {Authorization: `Bearer ${document.cookie.split('=')[1]}`});
             message.value = response.data.error ?? response.data.success;
             answer.value = true;
         } catch (e) {

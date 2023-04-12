@@ -8,6 +8,8 @@ import { loadFonts } from './plugins/webfontloader'
 
 import 'material-icons/iconfont/material-icons.css';
 
+import { VueCookieNext } from 'vue-cookie-next'
+
 import { createStore } from 'vuex'
 import {createVuetify} from "vuetify";
 
@@ -32,8 +34,10 @@ const app = createApp({
     render: ()=>h(App)
 });
 
+
 app
     .use(store)
     .use(router)
     .use(vuetify)
+    .use(VueCookieNext)
     .mount('#app')

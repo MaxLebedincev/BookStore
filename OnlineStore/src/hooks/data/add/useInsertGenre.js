@@ -9,7 +9,7 @@ export async function UseInsertGenre(name, image) {
             const response = await axios.post('/moderator/insertGenre', {
                 name: name,
                 image: image
-            });
+            }, {Authorization: `Bearer ${document.cookie.split('=')[1]}`});
             message.value = response.data.error ?? response.data.success;
             answer.value = true;
         } catch (e) {

@@ -10,7 +10,7 @@ export async function UseUpdateGenre(name, image, id) {
                 name: name,
                 image: image,
                 id: id
-            });
+            }, {Authorization: `Bearer ${document.cookie.split('=')[1]}`});
             message.value = response.data.error ?? response.data.success;
             answer.value = true;
         } catch (e) {
